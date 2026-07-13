@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>krii cafe and bouquet shop | Artisanal Brews & Bespoke Blooms</title>
-    <!-- Google Fonts -->
+    <title>krii cafe and bouquet shop | Brews & Blooms</title>
+    <!-- Google Fonts Links -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Vector Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* CSS Custom Properties / System Palette */
         :root {
-            --primary: #1C2E24; /* Rich Forest Green */
-            --primary-light: #344E41;
-            --accent: #C5A059; /* Warm Muted Gold */
-            --accent-soft: #EADBC8; /* Soft Creamy Ochre */
-            --rose-muted: #D3B4B7; /* Dusty Rose */
-            --bg-base: #FAF8F5; /* Bone White/Cream */
-            --bg-card: #FFFFFF;
-            --text-main: #2B2B2B;
-            --text-muted: #6E6E6E;
-            --text-light: #FFFFFF;
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: 'Montserrat', sans-serif;
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            --shadow-subtle: 0 4px 20px rgba(28, 46, 36, 0.04);
-            --shadow-elegant: 0 20px 40px rgba(28, 46, 36, 0.08);
+            --primary: #192A20; /* Deep Botanical Green */
+            --primary-light: #2D4636;
+            --accent: #C5A059; /* Classic Soft Gold Accent */
+            --accent-bg: #F4EFE6; /* Muted Floral Cream */
+            --rose-dust: #CCA7A9; /* Velvet Leaf Rose Tint */
+            --base-white: #FAF9F5; /* Premium Linen Background */
+            --card-white: #FFFFFF;
+            --font-dark: #242424;
+            --font-muted: #6B6B6B;
+            --font-light: #FFFFFF;
+            --serif: 'Cormorant Garamond', serif;
+            --sans: 'Montserrat', sans-serif;
+            --motion: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-sm: 0 4px 20px rgba(25, 42, 32, 0.03);
+            --shadow-md: 0 20px 40px rgba(25, 42, 32, 0.07);
         }
 
-        /* Base Resets & Structure */
+        /* Base Resets */
         * {
             margin: 0;
             padding: 0;
@@ -45,9 +46,9 @@
         }
 
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            font-family: var(--sans);
+            background-color: var(--base-white);
+            color: var(--font-dark);
             line-height: 1.8;
             overflow-x: hidden;
         }
@@ -59,24 +60,23 @@
             padding: 0 40px;
         }
 
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-serif);
+        /* Global Structural Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--serif);
             font-weight: 500;
             letter-spacing: 0.5px;
-            line-height: 1.2;
         }
 
         p {
             font-size: 0.95rem;
             font-weight: 300;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.1px;
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
         img {
@@ -86,105 +86,87 @@
             object-fit: cover;
         }
 
-        /* Global Components */
-        .section-header {
+        /* Reusable Section Headers */
+        .krii-section-head {
             text-align: center;
-            margin-bottom: 80px;
-            position: relative;
+            margin-bottom: 70px;
         }
 
-        .section-header span {
-            font-family: var(--font-sans);
+        .krii-section-head span {
+            font-family: var(--sans);
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 4px;
             color: var(--accent);
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 500;
         }
 
-        .section-header h2 {
+        .krii-section-head h2 {
             font-size: 3.2rem;
             color: var(--primary);
-            position: relative;
-            display: inline-block;
         }
 
-        .section-header h2::after {
+        .krii-section-head h2::after {
             content: '';
             display: block;
-            width: 40px;
+            width: 45px;
             height: 1px;
             background-color: var(--accent);
-            margin: 20px auto 0 auto;
+            margin: 15px auto 0 auto;
         }
 
-        /* Interactive Buttons */
+        /* Buttons Structure */
         .btn-krii {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 36px;
-            font-family: var(--font-sans);
+            padding: 15px 35px;
+            font-family: var(--sans);
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 500;
             border: 1px solid transparent;
-            border-radius: 0px;
             cursor: pointer;
-            transition: var(--transition-smooth);
-            position: relative;
-            background: transparent;
-            z-index: 1;
+            transition: var(--motion);
         }
 
-        .btn-krii::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
+        .btn-krii-solid {
             background-color: var(--primary);
-            transition: var(--transition-smooth);
-            z-index: -1;
-        }
-
-        .btn-krii-primary {
+            color: var(--font-light);
             border-color: var(--primary);
-            color: var(--text-light);
-            background-color: var(--primary);
         }
 
-        .btn-krii-primary:hover {
-            color: var(--primary);
+        .btn-krii-solid:hover {
             background-color: transparent;
+            color: var(--primary);
         }
 
         .btn-krii-outline {
             border-color: var(--primary);
             color: var(--primary);
+            background-color: transparent;
         }
 
         .btn-krii-outline:hover {
-            color: var(--text-light);
             background-color: var(--primary);
+            color: var(--font-light);
         }
 
-        /* Custom Scrollbar */
+        /* Layout Scrollbar customization */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-base);
+            background: var(--base-white);
         }
         ::-webkit-scrollbar-thumb {
             background: var(--primary-light);
         }
 
-        /* Header / Navigation */
+        /* Main Fixed Header Navigation */
         header {
             position: fixed;
             top: 0;
@@ -192,55 +174,55 @@
             width: 100%;
             z-index: 1000;
             padding: 30px 0;
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
-        header.sticky {
-            background-color: rgba(250, 248, 245, 0.95);
+        header.sticky-active {
+            background-color: rgba(250, 249, 245, 0.96);
             padding: 15px 0;
-            box-shadow: var(--shadow-subtle);
-            border-bottom: 1px solid rgba(28, 46, 36, 0.05);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(25, 42, 32, 0.05);
+            backdrop-filter: blur(8px);
         }
 
-        .nav-wrapper {
+        .nav-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .brand-logo {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
+        .logo-text {
+            font-family: var(--serif);
+            font-size: 1.7rem;
             font-weight: 600;
             color: var(--primary);
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: lowercase;
         }
 
-        .brand-logo span {
+        .logo-text span {
             color: var(--accent);
         }
 
-        .nav-links {
+        .nav-items-list {
             display: flex;
             align-items: center;
             list-style: none;
             gap: 40px;
         }
 
-        .nav-item a {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
+        .nav-item-node a {
+            font-family: var(--sans);
+            font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 400;
             color: var(--primary);
             position: relative;
-            padding: 8px 0;
+            padding: 6px 0;
         }
 
-        .nav-item a::after {
+        .nav-item-node a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -248,1004 +230,1012 @@
             width: 0;
             height: 1px;
             background-color: var(--accent);
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
-        .nav-item a:hover::after,
-        .nav-item a.active::after {
+        .nav-item-node a:hover::after,
+        .nav-item-node a.active-link::after {
             width: 100%;
         }
 
-        .mobile-toggle {
+        .responsive-hamburger {
             display: none;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--primary);
             cursor: pointer;
         }
 
-        /* Hero Layer */
-        #home {
+        /* Hero Splash Section */
+        #hero-view {
             height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            background: linear-gradient(rgba(28, 46, 36, 0.45), rgba(28, 46, 36, 0.35)), 
+            background: linear-gradient(rgba(25, 42, 32, 0.5), rgba(25, 42, 32, 0.4)), 
                         url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            color: var(--text-light);
-            padding-top: 100px;
+            color: var(--font-light);
+            padding-top: 90px;
         }
 
-        .hero-inner {
+        .hero-bound {
             max-width: 850px;
         }
 
-        .hero-inner span {
-            font-family: var(--font-sans);
+        .hero-bound span {
+            font-family: var(--sans);
             text-transform: uppercase;
             font-size: 0.85rem;
-            letter-spacing: 6px;
-            color: var(--accent-soft);
+            letter-spacing: 5px;
+            color: var(--accent-bg);
             display: block;
             margin-bottom: 20px;
         }
 
-        .hero-inner h1 {
-            font-size: 5rem;
+        .hero-bound h1 {
+            font-size: 4.8rem;
             font-weight: 400;
             line-height: 1.1;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .hero-inner p {
-            font-family: var(--font-serif);
+        .hero-bound p {
+            font-family: var(--serif);
             font-style: italic;
             font-size: 1.6rem;
             font-weight: 300;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             color: rgba(255, 255, 255, 0.9);
             max-width: 650px;
         }
 
-        .hero-actions {
+        .hero-cta-box {
             display: flex;
             gap: 20px;
         }
 
-        .hero-actions .btn-krii-primary {
+        .hero-cta-box .btn-krii-solid {
             background-color: var(--accent);
             border-color: var(--accent);
             color: var(--primary);
         }
 
-        .hero-actions .btn-krii-primary:hover {
+        .hero-cta-box .btn-krii-solid:hover {
             background-color: transparent;
-            border-color: var(--text-light);
-            color: var(--text-light);
+            border-color: var(--font-light);
+            color: var(--font-light);
         }
 
-        .hero-actions .btn-krii-outline {
-            border-color: var(--text-light);
-            color: var(--text-light);
+        .hero-cta-box .btn-krii-outline {
+            border-color: var(--font-light);
+            color: var(--font-light);
         }
 
-        .hero-actions .btn-krii-outline:hover {
-            background-color: var(--text-light);
+        .hero-cta-box .btn-krii-outline:hover {
+            background-color: var(--font-light);
             color: var(--primary);
         }
 
-        /* Story Section */
-        #story {
-            padding: 140px 0;
-            background-color: var(--bg-base);
+        /* Atelier Story Grid Section */
+        #atelier-story {
+            padding: 130px 0;
+            background-color: var(--base-white);
         }
 
-        .story-grid {
+        .story-layout-grid {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 80px;
+            gap: 70px;
             align-items: center;
         }
 
-        .story-visuals {
+        .story-media-stack {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             position: relative;
         }
 
-        .img-container-main {
+        .media-box-primary {
             grid-column: 1 / span 9;
             z-index: 2;
-            box-shadow: var(--shadow-elegant);
+            box-shadow: var(--shadow-md);
         }
 
-        .img-container-sub {
-            grid-column: 7 / -1;
+        .media-box-secondary {
+            grid-column: 6 / -1;
             grid-row: 1;
-            transform: translateY(35%);
+            transform: translateY(30%);
             z-index: 3;
-            box-shadow: var(--shadow-elegant);
-            border: 12px solid var(--bg-base);
+            box-shadow: var(--shadow-md);
+            border: 12px solid var(--base-white);
         }
 
-        .story-content h3 {
+        .story-text-pane h3 {
             font-size: 2.8rem;
             color: var(--primary);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             line-height: 1.2;
         }
 
-        .story-content p {
-            color: var(--text-muted);
-            margin-bottom: 25px;
+        .story-text-pane p {
+            color: var(--font-muted);
+            margin-bottom: 20px;
         }
 
-        .story-signature {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
+        .story-brand-sig {
+            font-family: var(--serif);
+            font-size: 1.9rem;
             color: var(--accent);
-            margin-top: 40px;
+            margin-top: 35px;
         }
 
-        /* Interactive Cafe & Bouquet Grid Menu */
-        #menu-section {
-            padding: 140px 0;
-            background-color: #F4F0EA;
+        /* Dynamic Menu Grid Block with Prices in Rupees */
+        #cafe-menu-hub {
+            padding: 130px 0;
+            background-color: #F3EEE5;
         }
 
-        .filter-controls {
+        .menu-filter-row {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
-        .filter-btn {
+        .menu-tab-selector {
             background: transparent;
             border: none;
-            font-family: var(--font-sans);
+            font-family: var(--sans);
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 12px 28px;
+            padding: 12px 26px;
             cursor: pointer;
-            color: var(--text-muted);
+            color: var(--font-muted);
             border: 1px solid transparent;
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
-        .filter-btn.active, .filter-btn:hover {
+        .menu-tab-selector.active-tab, .menu-tab-selector:hover {
             color: var(--primary);
             border-color: var(--primary);
-            background-color: var(--bg-card);
+            background-color: var(--card-white);
         }
 
-        .menu-grid-container {
+        .menu-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
         }
 
-        .menu-card-item {
-            background-color: var(--bg-card);
+        .menu-card-node {
+            background-color: var(--card-white);
             padding: 35px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            box-shadow: var(--shadow-subtle);
-            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            transition: var(--motion);
             border: 1px solid transparent;
         }
 
-        .menu-card-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-elegant);
-            border-color: rgba(197, 160, 89, 0.3);
+        .menu-card-node:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(197, 160, 89, 0.25);
         }
 
-        .menu-card-details {
+        .menu-card-inner {
             flex: 1;
-            padding-right: 30px;
+            padding-right: 20px;
         }
 
-        .menu-card-top {
+        .menu-card-topline {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
 
-        .menu-card-top h4 {
-            font-size: 1.4rem;
+        .menu-card-topline h4 {
+            font-size: 1.35rem;
             color: var(--primary);
         }
 
-        .menu-card-tag {
-            font-family: var(--font-sans);
+        .menu-badge-indicator {
+            font-family: var(--sans);
             font-size: 0.65rem;
             text-transform: uppercase;
-            background-color: var(--accent-soft);
+            background-color: var(--accent-bg);
             color: var(--primary);
-            padding: 3px 10px;
+            padding: 2px 8px;
             font-weight: 500;
-            margin-left: 10px;
+            margin-left: 8px;
             letter-spacing: 1px;
             vertical-align: middle;
         }
 
-        .menu-card-price {
-            font-family: var(--font-serif);
+        .menu-price-tag {
+            font-family: var(--serif);
             font-size: 1.3rem;
             font-weight: 600;
             color: var(--accent);
+            white-space: nowrap;
         }
 
-        .menu-card-item p {
+        .menu-card-node p {
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: var(--font-muted);
         }
 
-        /* Products Showcase */
-        #boutique {
-            padding: 140px 0;
-            background-color: var(--bg-card);
+        /* Bouquet Shop Specialties Section */
+        #bouquet-shop-showcase {
+            padding: 130px 0;
+            background-color: var(--card-white);
         }
 
-        .product-showcase-grid {
+        .bouquet-products-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
         }
 
-        .showcase-card {
-            background-color: var(--bg-base);
-            transition: var(--transition-smooth);
+        .bouquet-card {
+            background-color: var(--base-white);
+            transition: var(--motion);
             position: relative;
             cursor: pointer;
         }
 
-        .showcase-img-holder {
+        .bouquet-img-container {
             position: relative;
             overflow: hidden;
-            height: 480px;
+            height: 460px;
         }
 
-        .showcase-img-holder img {
+        .bouquet-img-container img {
             width: 100%;
             height: 100%;
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
-        .showcase-card:hover .showcase-img-holder img {
-            transform: scale(1.05);
+        .bouquet-card:hover .bouquet-img-container img {
+            transform: scale(1.04);
         }
 
-        .showcase-mask {
+        .bouquet-hover-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(28, 46, 36, 0.4);
+            background-color: rgba(25, 42, 32, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
-        .showcase-card:hover .showcase-mask {
+        .bouquet-card:hover .bouquet-hover-overlay {
             opacity: 1;
         }
 
-        .showcase-meta {
-            padding: 30px 20px;
+        .bouquet-details-pane {
+            padding: 25px 15px;
             text-align: center;
         }
 
-        .showcase-meta h3 {
-            font-size: 1.6rem;
+        .bouquet-details-pane h3 {
+            font-size: 1.55rem;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        .showcase-meta p {
-            font-family: var(--font-serif);
+        .bouquet-details-pane p {
+            font-family: var(--serif);
             font-style: italic;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 12px;
+            color: var(--font-muted);
+            font-size: 1.05rem;
+            margin-bottom: 10px;
         }
 
-        .showcase-cost {
-            font-family: var(--font-sans);
+        .bouquet-rupee-price {
+            font-family: var(--sans);
             font-size: 0.95rem;
             font-weight: 500;
             color: var(--accent);
         }
 
-        /* Live Atmosphere Feedback Slider */
-        #atmosphere {
-            padding: 120px 0;
-            background: linear-gradient(rgba(28, 46, 36, 0.88), rgba(28, 46, 36, 0.88)), 
+        /* Atmosphere Review Slider Section */
+        #reviews-slider-layer {
+            padding: 110px 0;
+            background: linear-gradient(rgba(25, 42, 32, 0.88), rgba(25, 42, 32, 0.88)), 
                         url('https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            color: var(--text-light);
+            color: var(--font-light);
             text-align: center;
         }
 
-        .feedback-carousel {
-            max-width: 900px;
+        .reviews-slider-container {
+            max-width: 850px;
             margin: 0 auto;
             position: relative;
-            min-height: 220px;
+            min-height: 200px;
         }
 
-        .feedback-node {
+        .review-slide-node {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.8s ease-in-out;
+            transition: all 0.7s ease-in-out;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .feedback-node.active-node {
+        .review-slide-node.active-slide {
             opacity: 1;
             visibility: visible;
             position: relative;
         }
 
-        .feedback-node i {
-            font-size: 2rem;
+        .review-slide-node i {
+            font-size: 1.8rem;
             color: var(--accent);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .feedback-node p {
-            font-family: var(--font-serif);
+        .review-slide-node p {
+            font-family: var(--serif);
             font-style: italic;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: 300;
         }
 
-        .feedback-node span {
-            font-family: var(--font-sans);
+        .review-slide-node span {
+            font-family: var(--sans);
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--rose-muted);
+            color: var(--rose-dust);
         }
 
-        /* Contact Structure & Forms */
-        #contact-channel {
-            padding: 140px 0;
-            background-color: var(--bg-base);
+        /* Contact Details & Inquiry Forms Module */
+        #contact-atelier-grid {
+            padding: 130px 0;
+            background-color: var(--base-white);
         }
 
-        .contact-split {
+        .contact-layout-split {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
+            gap: 75px;
         }
 
-        .contact-card-info h3 {
+        .contact-text-details h3 {
             font-size: 2.6rem;
             color: var(--primary);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .contact-card-info p {
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-
-        .contact-block {
+        .contact-text-details p {
+            color: var(--font-muted);
             margin-bottom: 35px;
+        }
+
+        .info-block-item {
+            margin-bottom: 30px;
             display: flex;
             align-items: flex-start;
             gap: 20px;
         }
 
-        .contact-block i {
-            font-size: 1.2rem;
+        .info-block-item i {
+            font-size: 1.1rem;
             color: var(--accent);
-            background-color: #F3ECE3;
-            padding: 15px;
+            background-color: #EFEAE0;
+            padding: 14px;
             border-radius: 50%;
         }
 
-        .contact-block-content h4 {
-            font-family: var(--font-sans);
+        .info-block-content h4 {
+            font-family: var(--sans);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--primary);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
-        .contact-block-content p {
-            color: var(--text-muted);
+        .info-block-content p {
+            color: var(--font-muted);
             font-size: 0.95rem;
         }
 
-        .social-channel-row {
+        .social-link-row {
             display: flex;
             gap: 15px;
-            margin-top: 45px;
+            margin-top: 40px;
         }
 
-        .social-channel-link {
+        .social-circle-link {
             display: inline-flex;
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(28, 46, 36, 0.15);
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(25, 42, 32, 0.15);
             justify-content: center;
             align-items: center;
             color: var(--primary);
             border-radius: 50%;
         }
 
-        .social-channel-link:hover {
+        .social-circle-link:hover {
             background-color: var(--primary);
-            color: var(--text-light);
+            color: var(--font-light);
             border-color: var(--primary);
         }
 
-        /* Form Controls */
-        .wrapper-form-krii {
-            background-color: var(--bg-card);
+        .contact-form-container {
+            background-color: var(--card-white);
             padding: 50px;
-            box-shadow: var(--shadow-elegant);
+            box-shadow: var(--shadow-md);
         }
 
-        .krii-field-group {
-            margin-bottom: 25px;
+        .form-input-element-group {
+            margin-bottom: 22px;
         }
 
-        .krii-input {
+        .krii-custom-input {
             width: 100%;
-            padding: 16px;
-            border: 1px solid #E5E0D8;
-            background-color: #FAFAFA;
-            font-family: var(--font-sans);
+            padding: 15px;
+            border: 1px solid #E4DFD5;
+            background-color: #FAF9F6;
+            font-family: var(--sans);
             font-size: 0.85rem;
-            transition: var(--transition-smooth);
-            color: var(--text-main);
+            transition: var(--motion);
+            color: var(--font-dark);
         }
 
-        .krii-input:focus {
+        .krii-custom-input:focus {
             border-color: var(--primary);
-            background-color: var(--bg-card);
+            background-color: var(--card-white);
         }
 
-        textarea.krii-input {
-            height: 160px;
+        textarea.krii-custom-input {
+            height: 150px;
             resize: none;
         }
 
-        /* Footer Architecture */
+        /* Footer Infrastructure */
         footer {
-            background-color: #121F18;
-            color: rgba(255, 255, 255, 0.65);
-            padding: 100px 0 40px 0;
+            background-color: #111D16;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 90px 0 40px 0;
             font-size: 0.9rem;
         }
 
-        .footer-columns {
+        .footer-columns-wrapper {
             display: grid;
             grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
             gap: 50px;
-            margin-bottom: 80px;
+            margin-bottom: 70px;
         }
 
-        .footer-col h4 {
-            color: var(--text-light);
-            font-family: var(--font-sans);
+        .footer-column-node h4 {
+            color: var(--font-light);
+            font-family: var(--sans);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .footer-col p {
+        .footer-column-node p {
             line-height: 1.9;
             font-weight: 300;
         }
 
-        .footer-links-list {
+        .footer-links-navigation {
             list-style: none;
         }
 
-        .footer-links-list li {
-            margin-bottom: 14px;
+        .footer-links-navigation li {
+            margin-bottom: 12px;
         }
 
-        .footer-links-list a:hover {
+        .footer-links-navigation a:hover {
             color: var(--accent);
-            padding-left: 6px;
+            padding-left: 5px;
         }
 
-        .footer-bottom-bar {
+        .footer-copyright-strip {
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 40px;
+            padding-top: 35px;
             text-align: center;
             font-size: 0.8rem;
             letter-spacing: 1px;
         }
 
-        /* Modal Structure for Quick View */
-        .krii-modal-overlay {
+        /* Interactive Showcase Modal Blueprint */
+        .krii-lightbox-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(18, 31, 24, 0.7);
+            background-color: rgba(17, 29, 22, 0.75);
             z-index: 2000;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: var(--transition-smooth);
+            transition: var(--motion);
             backdrop-filter: blur(4px);
         }
 
-        .krii-modal-overlay.modal-visible {
+        .krii-lightbox-overlay.lightbox-visible {
             opacity: 1;
             pointer-events: auto;
         }
 
-        .krii-modal-box {
-            background-color: var(--bg-base);
+        .krii-lightbox-window {
+            background-color: var(--base-white);
             width: 92%;
             max-width: 900px;
             position: relative;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            transform: scale(0.95);
-            transition: var(--transition-smooth);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            transform: scale(0.96);
+            transition: var(--motion);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
         }
 
-        .krii-modal-overlay.modal-visible .krii-modal-box {
+        .krii-lightbox-overlay.lightbox-visible .krii-lightbox-window {
             transform: scale(1);
         }
 
-        .krii-modal-dismiss {
+        .lightbox-close-trigger {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 15px;
+            right: 22px;
             font-size: 1.8rem;
             cursor: pointer;
             z-index: 10;
             color: var(--primary);
-            transition: var(--transition-smooth);
+            transition: var(--motion);
         }
 
-        .krii-modal-dismiss:hover {
+        .lightbox-close-trigger:hover {
             color: var(--accent);
         }
 
-        .krii-modal-graphic img {
+        .lightbox-image-side img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .krii-modal-details-pane {
+        .lightbox-content-side {
             padding: 50px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* Responsive Layout Configurations */
+        /* Dynamic Responsive Layout Media Rules */
         @media (max-width: 1200px) {
-            .hero-inner h1 { font-size: 4rem; }
-            .story-grid, .contact-split { gap: 40px; }
-            .product-showcase-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-bound h1 { font-size: 3.8rem; }
+            .story-layout-grid, .contact-layout-split { gap: 40px; }
+            .bouquet-products-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 992px) {
-            .story-grid, .contact-split {
+            .story-layout-grid, .contact-layout-split {
                 grid-template-columns: 1fr;
             }
-            .story-visuals { max-width: 600px; margin: 0 auto; }
-            .footer-columns { grid-template-columns: 1fr 1fr; }
+            .story-media-stack { max-width: 600px; margin: 0 auto; }
+            .footer-columns-wrapper { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-items-list {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
+                width: 75%;
                 height: 100vh;
-                background-color: var(--bg-base);
+                background-color: var(--base-white);
                 flex-direction: column;
                 padding: 120px 40px;
                 box-shadow: -10px 0 40px rgba(0,0,0,0.05);
-                transition: var(--transition-smooth);
-                gap: 30px;
+                transition: var(--motion);
+                gap: 25px;
             }
-            .nav-links.mobile-active { right: 0; }
-            .mobile-toggle { display: block; }
-            .menu-grid-container { grid-template-columns: 1fr; }
-            .krii-modal-box { grid-template-columns: 1fr; }
-            .krii-modal-graphic { height: 280px; }
-            .krii-modal-details-pane { padding: 30px; }
-            .section-header h2 { font-size: 2.4rem; }
-            .hero-inner h1 { font-size: 3rem; }
+            .nav-items-list.mobile-visible { right: 0; }
+            .responsive-hamburger { display: block; }
+            .menu-cards-grid { grid-template-columns: 1fr; }
+            .krii-lightbox-window { grid-template-columns: 1fr; }
+            .lightbox-image-side { height: 260px; }
+            .lightbox-content-side { padding: 30px; }
+            .krii-section-head h2 { font-size: 2.3rem; }
+            .hero-bound h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Main Navigation Bar -->
-    <header id="krii-header">
-        <div class="container nav-wrapper">
-            <a href="#home" class="brand-logo">krii cafe and bouquet shop<span>.</span></a>
-            <ul class="nav-links" id="krii-nav-links">
-                <li class="nav-item"><a href="#home" class="active">Home</a></li>
-                <li class="nav-item"><a href="#story">Our Story</a></li>
-                <li class="nav-item"><a href="#menu-section">Menu & Arrangements</a></li>
-                <li class="nav-item"><a href="#boutique">Boutique Specialties</a></li>
-                <li class="nav-item"><a href="#contact-channel">Contact</a></li>
+    <!-- Upper Header Sticky Navigation -->
+    <header id="header-hub">
+        <div class="container nav-flex">
+            <a href="#hero-view" class="logo-text">krii cafe and bouquet shop<span>.</span></a>
+            <ul class="nav-items-list" id="navigation-list-nodes">
+                <li class="nav-item-node"><a href="#hero-view" class="active-link">Home</a></li>
+                <li class="nav-item-node"><a href="#atelier-story">Our Story</a></li>
+                <li class="nav-item-node"><a href="#cafe-menu-hub">Menu</a></li>
+                <li class="nav-item-node"><a href="#bouquet-shop-showcase">Bespoke Bouquets</a></li>
+                <li class="nav-item-node"><a href="#contact-atelier-grid">Contact</a></li>
             </ul>
-            <div class="mobile-toggle" id="krii-mobile-toggle">
+            <div class="responsive-hamburger" id="hamburger-menu-trigger">
                 <i class="fa-solid fa-bars-staggered"></i>
             </div>
         </div>
     </header>
 
-    <!-- Hero Content Layer -->
-    <section id="home">
+    <!-- Main Visual Hero Presentation -->
+    <section id="hero-view">
         <div class="container">
-            <div class="hero-inner">
+            <div class="hero-bound">
                 <span>Welcome to krii cafe and bouquet shop</span>
-                <h1>Where Freshly Brewed Mornings Meet Bespoke Floral Artistry</h1>
-                <p>An elegant space designed to awaken your senses with single-origin pour-overs and seasonal, hand-tied botanical masterpieces.</p>
-                <div class="hero-actions">
-                    <a href="#menu-section" class="btn-krii btn-krii-primary">View the Menu</a>
-                    <a href="#boutique" class="btn-krii btn-krii-outline">Explore Blooms</a>
+                <h1>A Symbiosis of Exceptional Coffee & Tailored Petals</h1>
+                <p>Immerse yourself in a sanctuary crafted around curated micro-lots, botanical elixir options, and elegant editorial arrangements.</p>
+                <div class="hero-cta-box">
+                    <a href="#cafe-menu-hub" class="btn-krii btn-krii-solid">Browse Menu</a>
+                    <a href="#bouquet-shop-showcase" class="btn-krii btn-krii-outline">View Collections</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Story Module -->
-    <section id="story">
+    <!-- Brand Identity Story -->
+    <section id="atelier-story">
         <div class="container">
-            <div class="story-grid">
-                <div class="story-visuals">
-                    <div class="img-container-main">
-                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80" alt="Cafe environment">
+            <div class="story-layout-grid">
+                <div class="story-media-stack">
+                    <div class="media-box-primary">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80" alt="Atelier Interior Concept">
                     </div>
-                    <div class="img-container-sub">
-                        <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=500&q=80" alt="Boutique flower setup">
+                    <div class="media-box-secondary">
+                        <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=500&q=80" alt="Flower design layout">
                     </div>
                 </div>
-                <div class="story-content">
-                    <h3>The Ritual of Coffee & Petals</h3>
-                    <p>At **krii cafe and bouquet shop**, we believe everyday routines deserve to be transformed into exquisite sensory experiences. We have combined the meticulous, deliberate art of premium small-batch coffee roasting with the delicate elegance of a high-end florist workshop.</p>
-                    <p>Whether you're stopping by for a perfectly balanced signature Rosewater Latte or sitting down with our principal floral designer to assemble a custom arrangement, our atelier offers a refined sanctuary from the rush of everyday life.</p>
-                    <div class="story-signature">krii.</div>
+                <div class="story-text-pane">
+                    <h3>An Organic Refuge for the Mind</h3>
+                    <p>At **krii cafe and bouquet shop**, we look at morning routines as an art form rather than a simple checklist item. By bringing the meticulous production parameters of premium small-batch coffee alongside the vibrant design methodologies of classic floral design, we've structured a unique space.</p>
+                    <p>Every single espresso shot is balanced and poured over calibrated variables. Parallelly, our floral studio pairs seasonal greens and blossoms to turn gifts and interior designs into unique statements.</p>
+                    <div class="story-brand-sig">krii.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Grid Menu Section -->
-    <section id="menu-section">
+    <!-- Menu Section (Prices in Rupees) -->
+    <section id="cafe-menu-hub">
         <div class="container">
-            <div class="section-header">
-                <span>Curated Offerings</span>
-                <h2>The Menu & Flora Guide</h2>
+            <div class="krii-section-head">
+                <span>Carefully Chosen Selection</span>
+                <h2>The Cafe & Botanicals Menu</h2>
             </div>
 
-            <div class="filter-controls">
-                <button class="filter-btn active" onclick="filterItems('all')">Show All</button>
-                <button class="filter-btn" onclick="filterItems('coffee')">Specialty Coffee</button>
-                <button class="filter-btn" onclick="filterItems('botanical')">Teas & Tonics</button>
-                <button class="filter-btn" onclick="filterItems('bakery')">Artisan Bakery</button>
+            <div class="menu-filter-row">
+                <button class="menu-tab-selector active-tab" onclick="applyMenuFilter('all')">Show All</button>
+                <button class="menu-tab-selector" onclick="applyMenuFilter('coffee')">Specialty Coffee</button>
+                <button class="menu-tab-selector" onclick="applyMenuFilter('botanical')">Teas & Tonics</button>
+                <button class="menu-tab-selector" onclick="applyMenuFilter('bakery')">Artisan Pastries</button>
             </div>
 
-            <div class="menu-grid-container" id="menu-interactive-target">
-                <!-- Coffee Node 1 -->
-                <div class="menu-card-item krii-mix coffee">
-                    <div class="menu-card-details">
-                        <div class="menu-card-top">
-                            <h4>Rosewater Espresso Latte <span class="menu-card-tag">Signature</span></h4>
-                            <span class="menu-card-price">$6.75</span>
+            <div class="menu-cards-grid" id="menu-items-parent-element">
+                <!-- Coffee Block 1 -->
+                <div class="menu-card-node menu-item-class coffee">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
+                            <h4>Rosewater Brew Latte <span class="menu-badge-indicator">Signature</span></h4>
+                            <span class="menu-price_tag">Rs. 450</span>
                         </div>
-                        <p>Artisanal espresso unified with velvety microfoam, culinary organic rosewater, and edible rose crystals.</p>
+                        <p>Balanced house espresso combined with organic culinary rosewater extract, velvety steamed milk, and clean petals.</p>
                     </div>
                 </div>
-                <!-- Coffee Node 2 -->
-                <div class="menu-card-item krii-mix coffee">
-                    <div class="menu-card-details">
-                        <div class="menu-card-top">
-                            <h4>Lavender Flat White</h4>
-                            <span class="menu-card-price">$5.75</span>
+                <!-- Coffee Block 2 -->
+                <div class="menu-card-node menu-item-class coffee">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
+                            <h4>Lavender-Infused Flat White</h4>
+                            <span class="menu-price-tag">Rs. 420</span>
                         </div>
-                        <p>Concentrated ristretto pulled over house-extracted French lavender syrup, finished with silky steamed milk.</p>
+                        <p>Rich, sweet double ristretto shot pulled over light organic lavender syrup, finished with microfoam layers.</p>
                     </div>
                 </div>
-                <!-- Botanical Node 1 -->
-                <div class="menu-card-item krii-mix botanical">
-                    <div class="menu-card-details">
-                        <div class="menu-card-top">
+                <!-- Coffee Block 3 -->
+                <div class="menu-card-node menu-item-class coffee">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
+                            <h4>Specialty V60 Pour Over</h4>
+                            <span class="menu-price-tag">Rs. 380</span>
+                        </div>
+                        <p>Single-origin micro-lots sourced ethically and prepared using targeted filtration parameters for delicate flavor clarity.</p>
+                    </div>
+                </div>
+                <!-- Botanical Block 1 -->
+                <div class="menu-card-node menu-item-class botanical">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
                             <h4>Ceremonial Jasmine Matcha</h4>
-                            <span class="menu-card-price">$6.50</span>
+                            <span class="menu-price-tag">Rs. 490</span>
                         </div>
-                        <p>Stone-ground premium Uji matcha layered over chilled, sparkling jasmine flower cold-brewed tea infusion.</p>
+                        <p>Uji matcha whisked over chilled, crisp sparkling jasmine blossom tea infusion for an elegant refreshment choice.</p>
                     </div>
                 </div>
-                <!-- Botanical Node 2 -->
-                <div class="menu-card-item krii-mix botanical">
-                    <div class="menu-card-details">
-                        <div class="menu-card-top">
-                            <h4>Elderflower Chamomile Brew</h4>
-                            <span class="menu-card-price">$6.00</span>
+                <!-- Botanical Block 2 -->
+                <div class="menu-card-node menu-item-class botanical">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
+                            <h4>Hibiscus Berry Iced Extraction</h4>
+                            <span class="menu-price-tag">Rs. 390</span>
                         </div>
-                        <p>Relaxing, organic whole-flower Egyptian chamomile mixed with sweet wild elderflower essence and fresh mint leaves.</p>
+                        <p>Tart, vibrant dried organic hibiscus blooms steeped alongside summer forest berries and served over clear cube ice.</p>
                     </div>
                 </div>
-                <!-- Bakery Node 1 -->
-                <div class="menu-card-item krii-mix bakery">
-                    <div class="menu-card-details">
-                        <div class="menu-card-top">
-                            <h4>Pistachio Rose Croissant</h4>
-                            <span class="menu-card-price">$5.50</span>
+                <!-- Bakery Block 1 -->
+                <div class="menu-card-node menu-item-class bakery">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
+                            <h4>Pistachio Rosewater Croissant</h4>
+                            <span class="menu-price-tag">Rs. 350</span>
                         </div>
-                        <p>Twice-baked flaky French pastry layered inside with premium pistachio marzipan and finished with candied rose petals.</p>
+                        <p>Flaky, hand-rolled golden puff pastry filled with real pistachio frangipane cream and dusted with rose crystals.</p>
                     </div>
                 </div>
-                <!-- Bakery Node 2 -->
-                <div class="menu-card-item krii-mix bakery">
-                    <div class="menu-card-details">
-                        <div class="menu-card-top">
-                            <h4>Lemon Elderflower Tart</h4>
-                            <span class="menu-card-price">$6.25</span>
+                <!-- Bakery Block 2 -->
+                <div class="menu-card-node menu-item-class bakery">
+                    <div class="menu-card-inner">
+                        <div class="menu-card-topline">
+                            <h4>Lemon Elderflower Glazed Tart</h4>
+                            <span class="menu-price-tag">Rs. 380</span>
                         </div>
-                        <p>Crisp buttery shortbread base containing a rich, sharp lemon curd, infused with elegant hints of hand-picked elderflower petals.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Boutique Specialties Showcase -->
-    <section id="boutique">
-        <div class="container">
-            <div class="section-header">
-                <span>Floral Shop Creations</span>
-                <h2>Unique Botanical Arrangements</h2>
-            </div>
-
-            <div class="product-showcase-grid">
-                <!-- Product Node 1 -->
-                <div class="showcase-card" onclick="triggerQuickView('The Krii Editorial Monograph', '$95.00', 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80', 'Our premium signature bouquet layout. Structured with pristine white garden roses, Italian ranunculus, silver dollar eucalyptus, and seasonal white botanical accents.')">
-                    <div class="showcase-img-holder">
-                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80" alt="Boutique Arrangement 1">
-                        <div class="showcase-mask">
-                            <span class="btn-krii btn-krii-primary" style="background-color: var(--bg-base); color: var(--primary);">Quick View</span>
-                        </div>
-                    </div>
-                    <div class="showcase-meta">
-                        <h3>The Krii Editorial Monograph</h3>
-                        <p>Elegant White & Emerald Greens</p>
-                        <span class="showcase-cost">$95.00</span>
-                    </div>
-                </div>
-                <!-- Product Node 2 -->
-                <div class="showcase-card" onclick="triggerQuickView('Terracotta Sunset Ensemble', '$110.00', 'https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=700&q=80', 'A warm-toned luxury presentation constructed using rich espresso roses, copper foliage, premium amber carnations, dried pampas plume inserts, and dynamic botanical stems.')">
-                    <div class="showcase-img-holder">
-                        <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=700&q=80" alt="Boutique Arrangement 2">
-                        <div class="showcase-mask">
-                            <span class="btn-krii btn-krii-primary" style="background-color: var(--bg-base); color: var(--primary);">Quick View</span>
-                        </div>
-                    </div>
-                    <div class="showcase-meta">
-                        <h3>Terracotta Sunset Ensemble</h3>
-                        <p>Earthly Textures & Warm Ochre</p>
-                        <span class="showcase-cost">$110.00</span>
-                    </div>
-                </div>
-                <!-- Product Node 3 -->
-                <div class="showcase-card" onclick="triggerQuickView('The Minimalist Stem Bunch', '$55.00', 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=700&q=80', 'Stripped-back structural beauty focusing tightly on a singular weekly rotating premium variety wrapped completely in eco-friendly raw-cut heavy construction paper.')">
-                    <div class="showcase-img-holder">
-                        <img src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=700&q=80" alt="Boutique Arrangement 3">
-                        <div class="showcase-mask">
-                            <span class="btn-krii btn-krii-primary" style="background-color: var(--bg-base); color: var(--primary);">Quick View</span>
-                        </div>
-                    </div>
-                    <div class="showcase-meta">
-                        <h3>The Minimalist Stem Bunch</h3>
-                        <p>Raw Architectural Luxury</p>
-                        <span class="showcase-cost">$55.00</span>
+                        <p>Shortbread crust carrying clean, bright citrus lemon curd subtle notes of organic harvested elderflower extract.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Atmosphere / Feedback Layer -->
-    <section id="atmosphere">
+    <!-- Unique Products / Bouquets Section (Prices in Rupees) -->
+    <section id="bouquet-shop-showcase">
         <div class="container">
-            <div class="feedback-carousel">
-                <div class="feedback-node active-node">
+            <div class="krii-section-head">
+                <span>Unique Curated Products</span>
+                <h2>Signature Bouquet Arrangements</h2>
+            </div>
+
+            <div class="bouquet-products-grid">
+                <!-- Arrangement Product 1 -->
+                <div class="bouquet-card" onclick="openLightboxView('The Krii Monograph Box', 'Rs. 4,500', 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80', 'Our premier house bouquet setup. Modeled with select ivory garden roses, premium ranunculus choices, silver dollar eucalyptus sprigs, and local botanical textures.')">
+                    <div class="bouquet-img-container">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80" alt="Bouquet Presentation Item 1">
+                        <div class="bouquet-hover-overlay">
+                            <span class="btn-krii btn-krii-solid" style="background-color: var(--base-white); color: var(--primary);">Quick View</span>
+                        </div>
+                    </div>
+                    <div class="bouquet-details-pane">
+                        <h3>The Krii Monograph Box</h3>
+                        <p>Elegant Ivory & Sage Greens</p>
+                        <span class="bouquet-rupee-price">Rs. 4,500</span>
+                    </div>
+                </div>
+                <!-- Arrangement Product 2 -->
+                <div class="bouquet-card" onclick="openLightboxView('Terracotta Amber Harvest', 'Rs. 5,200', 'https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=700&q=80', 'A warm seasonal combination showing off copper leaves, premium amber rose configurations, dried pampas plume features, and dynamic design stems.')">
+                    <div class="bouquet-img-container">
+                        <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=700&q=80" alt="Bouquet Presentation Item 2">
+                        <div class="bouquet-hover-overlay">
+                            <span class="btn-krii btn-krii-solid" style="background-color: var(--base-white); color: var(--primary);">Quick View</span>
+                        </div>
+                    </div>
+                    <div class="bouquet-details-pane">
+                        <h3>Terracotta Amber Harvest</h3>
+                        <p>Earthly Textures & Deep Ochre</p>
+                        <span class="bouquet-rupee-price">Rs. 5,200</span>
+                    </div>
+                </div>
+                <!-- Arrangement Product 3 -->
+                <div class="bouquet-card" onclick="openLightboxView('The Minimalist Single Variety', 'Rs. 2,800', 'https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=700&q=80', 'Clean architectural curation presenting a premium single flower variety wrapped elegantly in custom structural brown kraft paper.')">
+                    <div class="bouquet-img-container">
+                        <img src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=700&q=80" alt="Bouquet Presentation Item 3">
+                        <div class="bouquet-hover-overlay">
+                            <span class="btn-krii btn-krii-solid" style="background-color: var(--base-white); color: var(--primary);">Quick View</span>
+                        </div>
+                    </div>
+                    <div class="bouquet-details-pane">
+                        <h3>The Minimalist Single Variety</h3>
+                        <p>Modern Structural Minimalism</p>
+                        <span class="bouquet-rupee-price">Rs. 2,800</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Atmosphere Review Loop Slider -->
+    <section id="reviews-slider-layer">
+        <div class="container">
+            <div class="reviews-slider-container">
+                <div class="review-slide-node active-slide">
                     <i class="fa-solid fa-quote-left"></i>
-                    <p>"The Rosewater Espresso Latte is absolutely out of this world, and being able to choose an editorial floral arrangement while waiting for my coffee is pure luxury."</p>
-                    <span>— Clara Vance</span>
+                    <p>"The Rosewater Brew Latte is unmatched, and getting to pick a custom bouquet format while waiting makes my mornings exceptional."</p>
+                    <span>— Clara Lindqvist</span>
                 </div>
-                <div class="feedback-node">
+                <div class="review-slide-node">
                     <i class="fa-solid fa-quote-left"></i>
-                    <p>"krii cafe and bouquet shop has mastered the fine art of elegant curation. The spaces are stunning, the items are unique, and the service is always pristine."</p>
-                    <span>— Julian Thorne</span>
+                    <p>"krii cafe and bouquet shop has truly built a perfect luxury balance. Exceptional pour-overs, stunning aesthetic, and premium floral stems."</p>
+                    <span>— Arthur Vance</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Hours Module -->
-    <section id="contact-channel">
+    <!-- Contact & Workspace Booking Section -->
+    <section id="contact-atelier-grid">
         <div class="container">
-            <div class="contact-split">
-                <div class="contact-card-info">
-                    <h3>Step Into Our Space</h3>
-                    <p>Located in the heart of the design quarter. Drop in for exceptional specialty coffee, explore seasonal flower stems, or contact us to discuss private floral events and workshop reservations.</p>
+            <div class="contact-layout-split">
+                <div class="contact-text-details">
+                    <h3>Connect With Us</h3>
+                    <p>Stop by our physical layout inside the Design Quarter for specialty coffee options, browse modern flora selections, or discuss subscription custom orders with our team.</p>
                     
-                    <div class="contact-block">
+                    <div class="info-block-item">
                         <i class="fa-solid fa-location-dot"></i>
-                        <div class="contact-block-content">
-                            <h4>Atelier Location</h4>
-                            <p>872 Botanical Avenue, Floor 1, New York, NY</p>
+                        <div class="info-block-content">
+                            <h4>Atelier Address</h4>
+                            <p>492 Botanical Boulevard, Level 1, Kathmandu, Nepal</p>
                         </div>
                     </div>
 
-                    <div class="contact-block">
+                    <div class="info-block-item">
                         <i class="fa-solid fa-clock"></i>
-                        <div class="contact-block-content">
-                            <h4>Operating Hours</h4>
-                            <p>Monday – Friday: 07:00 AM – 06:00 PM<br>Saturday – Sunday: 08:00 AM – 05:00 PM</p>
+                        <div class="info-block-content">
+                            <h4>Opening Availability</h4>
+                            <p>Monday – Friday: 07:00 AM – 07:00 PM<br>Saturday – Sunday: 08:00 AM – 06:00 PM</p>
                         </div>
                     </div>
 
-                    <div class="social-channel-row">
-                        <a href="#" class="social-channel-link"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-channel-link"><i class="fa-brands fa-pinterest-p"></i></a>
-                        <a href="#" class="social-channel-link"><i class="fa-brands fa-vimeo-v"></i></a>
+                    <div class="social-link-row">
+                        <a href="#" class="social-circle-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-circle-link"><i class="fa-brands fa-pinterest-p"></i></a>
+                        <a href="#" class="social-circle-link"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
 
-                <div class="wrapper-form-krii">
-                    <form onsubmit="event.preventDefault(); alert('Thank you for contacting krii cafe and bouquet shop. Our concierge will reach out via email shortly.');">
-                        <div class="krii-field-group">
-                            <input type="text" class="krii-input" placeholder="Your Full Name" required>
+                <div class="contact-form-container">
+                    <form onsubmit="event.preventDefault(); alert('Inquiry sent successfully to krii cafe and bouquet shop. Our concierge will follow up soon.');">
+                        <div class="form-input-element-group">
+                            <input type="text" class="krii-custom-input" placeholder="Your Name" required>
                         </div>
-                        <div class="krii-field-group">
-                            <input type="email" class="krii-input" placeholder="Your Email Address" required>
+                        <div class="form-input-element-group">
+                            <input type="email" class="krii-custom-input" placeholder="Your Email Address" required>
                         </div>
-                        <div class="krii-field-group">
-                            <textarea class="krii-input" placeholder="Inquire about bespoke floral arrangements, weddings, subscription programs, or group space reservations..." required></textarea>
+                        <div class="form-input-element-group">
+                            <textarea class="krii-custom-input" placeholder="Tell us about your event floral inquiries, custom bouquet orders, or coffee table reservation preferences..." required></textarea>
                         </div>
-                        <button type="submit" class="btn-krii btn-krii-primary" style="width: 100%;">Submit Inquiry</button>
+                        <button type="submit" class="btn-krii btn-krii-solid" style="width: 100%;">Send Inquiry</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Architecture -->
+    <!-- Footer Space -->
     <footer>
-        <div class="container footer-columns">
-            <div class="footer-col">
-                <h4 style="font-family: var(--font-serif); font-size: 1.6rem; text-transform: lowercase; color: var(--accent); margin-bottom: 20px;">krii cafe and bouquet shop.</h4>
-                <p>Bringing everyday seasonal elegance and deliberate artisanal hospitality under a single welcoming botanical roof.</p>
+        <div class="container footer-columns-wrapper">
+            <div class="footer-column-node">
+                <h4 style="font-family: var(--serif); font-size: 1.6rem; text-transform: lowercase; color: var(--accent); margin-bottom: 20px;">krii cafe and bouquet shop.</h4>
+                <p>Curating clean sensory micro-moments by combining fine coffee extraction alongside small-studio botanical arrangement services.</p>
             </div>
-            <div class="footer-col">
+            <div class="footer-column-node">
                 <h4>Atelier Links</h4>
-                <ul class="footer-links-list">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#story">Our Story</a></li>
-                    <li><a href="#menu-section">Menu</a></li>
-                    <li><a href="#boutique">Boutique Stems</a></li>
+                <ul class="footer-links-navigation">
+                    <li><a href="#hero-view">Home</a></li>
+                    <li><a href="#atelier-story">Our Story</a></li>
+                    <li><a href="#cafe-menu-hub">Menu</a></li>
+                    <li><a href="#bouquet-shop-showcase">Bespoke Bouquets</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+            <div class="footer-column-node">
                 <h4>Floral Programs</h4>
-                <p>Learn about our premium custom flower subscription packages. Tailored arrangements delivered directly to your commercial spaces or residence every Monday morning.</p>
+                <p>Enquire about weekly flower subscription plans. Premium arrangements delivered fresh to commercial corporate spaces or residential front doors regular intervals.</p>
             </div>
         </div>
-        <div class="footer-bottom-bar">
+        <div class="footer-copyright-strip">
             <p>&copy; 2026 krii cafe and bouquet shop. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Interactive Quick View Modal Component -->
-    <div class="krii-modal-overlay" id="krii-quickview-modal" onclick="dismissQuickView()">
-        <div class="krii-modal-box" onclick="event.stopPropagation()">
-            <span class="krii-modal-dismiss" onclick="dismissQuickView()">&times;</span>
-            <div class="krii-modal-graphic">
-                <img id="krii-modal-image" src="" alt="Arrangement Target View">
+    <!-- Product Lightbox Modal Component View -->
+    <div class="krii-lightbox-overlay" id="product-quick-view-lightbox" onclick="closeLightboxView()">
+        <div class="krii-lightbox-window" onclick="event.stopPropagation()">
+            <span class="lightbox-close-trigger" onclick="closeLightboxView()">&times;</span>
+            <div class="lightbox-image-side">
+                <img id="lightbox-display-image" src="" alt="Target View">
             </div>
-            <div class="krii-modal-details-pane">
-                <h3 id="krii-modal-title" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 8px;"></h3>
-                <span id="krii-modal-cost" style="font-size: 1.4rem; color: var(--accent); font-weight: 500; margin-bottom: 20px; display: inline-block;"></span>
-                <p id="krii-modal-description" style="color: var(--text-muted); margin-bottom: 35px;"></p>
-                <button class="btn-krii btn-krii-primary" onclick="alert('Item selected! Our flower designer has added this to your cart list.'); dismissQuickView();">Order Arrangement</button>
+            <div class="lightbox-content-side">
+                <h3 id="lightbox-display-title" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 5px;"></h3>
+                <span id="lightbox-display-price" style="font-size: 1.4rem; color: var(--accent); font-weight: 500; margin-bottom: 20px; display: inline-block;"></span>
+                <p id="lightbox-display-desc" style="color: var(--font-muted); margin-bottom: 35px;"></p>
+                <button class="btn-krii btn-krii-solid" onclick="alert('Arrangement added to selection. Our lead designer will match details.'); closeLightboxView();">Pre-Order Arrangement</button>
             </div>
         </div>
     </div>
 
-    <!-- Active Logic Implementations -->
+    <!-- Active Logic Controller JavaScript Scripts -->
     <script>
-        // Sticky Header & Dynamic Intersecting Links Activation
+        // Sticky Header Trigger State & Dynamic Link Highlighting
         window.addEventListener('scroll', function() {
-            const currentHeader = document.getElementById('krii-header');
+            const headerElement = document.getElementById('header-hub');
             if (window.scrollY > 40) {
-                currentHeader.classList.add('sticky');
+                headerElement.classList.add('sticky-active');
             } else {
-                currentHeader.classList.remove('sticky');
+                headerElement.classList.remove('sticky-active');
             }
 
-            const currentSections = document.querySelectorAll('section');
-            const currentLinks = document.querySelectorAll('.nav-item a');
-            let targetActiveId = '';
+            const pageSections = document.querySelectorAll('section');
+            const mainNavLinks = document.querySelectorAll('.nav-item-node a');
+            let matchedSectionId = '';
 
-            currentSections.forEach(section => {
-                const sectionPositionTop = section.offsetTop;
-                if (pageYOffset >= sectionPositionTop - 140) {
-                    targetActiveId = section.getAttribute('id');
+            pageSections.forEach(sec => {
+                const distanceTop = sec.offsetTop;
+                if (pageYOffset >= distanceTop - 150) {
+                    matchedSectionId = sec.getAttribute('id');
                 }
             });
 
-            currentLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(targetActiveId)) {
-                    link.classList.add('active');
+            mainNavLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('href').includes(matchedSectionId)) {
+                    link.classList.add('active-link');
                 }
             });
         });
 
-        // Mobile Sidebar Toggle
-        const openToggle = document.getElementById('krii-mobile-toggle');
-        const coreMenuLinks = document.getElementById('krii-nav-links');
+        // Mobile Menu View Toggle Button Handler
+        const hambTrigger = document.getElementById('hamburger-menu-trigger');
+        const listContainer = document.getElementById('navigation-list-nodes');
 
-        openToggle.addEventListener('click', () => {
-            coreMenuLinks.classList.toggle('mobile-active');
-            openToggle.innerHTML = coreMenuLinks.classList.contains('mobile-active') 
+        hambTrigger.addEventListener('click', () => {
+            listContainer.classList.toggle('mobile-visible');
+            hambTrigger.innerHTML = listContainer.classList.contains('mobile-visible') 
                 ? '<i class="fa-solid fa-xmark"></i>' 
                 : '<i class="fa-solid fa-bars-staggered"></i>';
         });
 
-        coreMenuLinks.querySelectorAll('a').forEach(element => {
-            element.addEventListener('click', () => {
-                coreMenuLinks.classList.remove('mobile-active');
-                openToggle.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
+        listContainer.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', () => {
+                listContainer.classList.remove('mobile-visible');
+                hambTrigger.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
             });
         });
 
-        // Menu Interactive Categorization Filter
-        function filterItems(category) {
-            const controlButtons = document.querySelectorAll('.filter-btn');
-            controlButtons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        // Interactive Menu Filtering Utility
+        function applyMenuFilter(filterTarget) {
+            const controlTabButtons = document.querySelectorAll('.menu-tab-selector');
+            controlTabButtons.forEach(btn => btn.classList.remove('active-tab'));
+            event.target.classList.add('active-tab');
 
-            const menuCards = document.querySelectorAll('.menu-card-item');
-            menuCards.forEach(card => {
-                if (category === 'all') {
-                    card.style.display = 'flex';
-                } else if (card.classList.contains(category)) {
+            const menuCardsList = document.querySelectorAll('.menu-card-node');
+            menuCardsList.forEach(card => {
+                if (filterTarget === 'all' || card.classList.contains(filterTarget)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -1253,27 +1243,27 @@
             });
         }
 
-        // Atmosphere Carousel Slide Looping
-        const feedbackNodes = document.querySelectorAll('.feedback-node');
-        let indexTrack = 0;
+        // Automatic Review Slideshow Carousel Loop
+        const slidesSet = document.querySelectorAll('.review-slide-node');
+        let slideCounterIndex = 0;
 
         setInterval(() => {
-            feedbackNodes[indexTrack].classList.remove('active-node');
-            indexTrack = (indexTrack + 1) % feedbackNodes.length;
-            feedbackNodes[indexTrack].classList.add('active-node');
+            slidesSet[slideCounterIndex].classList.remove('active-slide');
+            slideCounterIndex = (slideCounterIndex + 1) % slidesSet.length;
+            slidesSet[slideCounterIndex].classList.add('active-slide');
         }, 6000);
 
-        // Floral Shop Quick-View Window Management
-        function triggerQuickView(title, cost, imgSource, narrative) {
-            document.getElementById('krii-modal-title').innerText = title;
-            document.getElementById('krii-modal-cost').innerText = cost;
-            document.getElementById('krii-modal-image').src = imgSource;
-            document.getElementById('krii-modal-description').innerText = narrative;
-            document.getElementById('krii-quickview-modal').classList.add('modal-visible');
+        // Bouquet Modal Window View Managers
+        function openLightboxView(titleText, costVal, imageSrc, textNarrative) {
+            document.getElementById('lightbox-display-title').innerText = titleText;
+            document.getElementById('lightbox-display-price').innerText = costVal;
+            document.getElementById('lightbox-display-image').src = imageSrc;
+            document.getElementById('lightbox-display-desc').innerText = textNarrative;
+            document.getElementById('product-quick-view-lightbox').classList.add('lightbox-visible');
         }
 
-        function dismissQuickView() {
-            document.getElementById('krii-quickview-modal').classList.remove('modal-visible');
+        function closeLightboxView() {
+            document.getElementById('product-quick-view-lightbox').classList.remove('lightbox-visible');
         }
     </script>
 </body>
