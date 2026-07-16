@@ -4,114 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KR Café & Florals | Where Coffee Meets Blooms</title>
-    <!-- Google Fonts -->
+    <meta name="description" content="Experience the luxury fusion of premium artisanal coffee and exquisite floral designs at KR Café & Florals.">
+    
+    <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animate on Scroll CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
+
     <style>
+        /* CSS Variables for Dynamic Light / Dark Theming */
         :root {
-            --sage-green: #8A9A86;
+            --sage: #7A9A82;
+            --sage-light: rgba(122, 154, 130, 0.15);
             --cream: #FDFBF7;
-            --coffee-brown: #4A3B32;
-            --dusty-pink: #E8C5C8;
+            --coffee: #4A3525;
+            --coffee-light: #6F523B;
+            --dusty-pink: #D4A373;
+            --rose: #E8C5C8;
             --white: #FFFFFF;
-            --dark-bg: #1C1A17;
-            --dark-card: #2A2621;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --text-main: #2C2520;
+            --text-muted: #605246;
             --glass-bg: rgba(255, 255, 255, 0.45);
-            --glass-border: rgba(255, 255, 255, 0.25);
-            --shadow: 0 8px 32px 0 rgba(74, 59, 50, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 8px 32px 0 rgba(74, 53, 37, 0.08);
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         [data-theme="dark"] {
-            --cream: #1C1A17;
-            --white: #25221E;
-            --text-main: #F5F5F5;
-            --text-muted: #CCCCCC;
-            --glass-bg: rgba(42, 38, 33, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.05);
+            --cream: #121212;
+            --white: #1A1A1A;
+            --text-main: #FDFBF7;
+            --text-muted: #C0B7B1;
+            --coffee: #E6D5C3;
+            --coffee-light: #D4BFA7;
+            --glass-bg: rgba(26, 26, 26, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            --coffee-brown: #E3D5CA;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* Reset & Global Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--cream);
             color: var(--text-main);
-            transition: var(--transition);
             overflow-x: hidden;
-            position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
         }
 
-        h1, h2, h3, h4, .serif {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 4px; }
 
         /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #1C1A17;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        .loader-logo {
-            font-family: 'Cormorant Garamond', serif;
-            color: #E8C5C8;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--cream); z-index: 9999; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(232, 197, 200, 0.2);
-            border-top: 2px solid #E8C5C8;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+            width: 50px; height: 50px; border: 3px solid var(--sage-light);
+            border-top: 3px solid var(--coffee); border-radius: 50%;
+            animation: spin 1s linear infinite; margin-bottom: 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Floating Petal Canvas Animation Backdrop */
+        #petal-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 10; opacity: 0.6;
         }
 
-        /* Floating Petals Container */
-        .petal-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 10;
-            overflow: hidden;
-        }
-        .petal {
-            position: absolute;
-            background: var(--dusty-pink);
-            border-radius: 150% 0 150% 150%;
-            opacity: 0.3;
-            animation: float 15s infinite linear;
-        }
-
-        /* Glassmorphism utility */
+        /* Glassmorphism Styling Utility */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -122,1449 +95,1741 @@
             transition: var(--transition);
         }
         .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px 0 rgba(74, 59, 50, 0.15);
+            transform: translateY(-6px);
+            border-color: var(--sage);
+            box-shadow: 0 12px 40px 0 rgba(122, 154, 130, 0.15);
         }
 
-        /* Buttons */
+        /* Section Layout Utilities */
+        section { padding: 100px 8% 80px 8%; position: relative; z-index: 20; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px auto; }
+        .section-header h2 { font-size: 3rem; color: var(--coffee); margin-bottom: 15px; position: relative; }
+        .section-header h2::after {
+            content: '✿'; display: block; font-size: 1.2rem; color: var(--sage); margin-top: 5px;
+        }
+        .section-header p { font-size: 1rem; color: var(--text-muted); font-weight: 300; }
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
+            display: inline-block; padding: 14px 32px; border-radius: 30px;
+            font-weight: 500; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; transition: var(--transition); cursor: pointer;
+            text-decoration: none; border: none;
         }
-        .btn-primary {
-            background-color: var(--coffee-brown);
-            color: var(--white) !important;
-        }
-        [data-theme="dark"] .btn-primary {
-            background-color: var(--sage-green);
-            color: #1C1A17 !important;
-        }
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: scale(1.03);
-        }
-        .btn-outline {
-            border: 1px solid var(--coffee-brown);
-            color: var(--coffee-brown);
-            background: transparent;
-        }
-        .btn-outline:hover {
-            background: var(--coffee-brown);
-            color: var(--white);
-        }
+        .btn-primary { background: var(--coffee); color: #fff; }
+        .btn-primary:hover { background: var(--sage); color: #fff; transform: translateY(-2px); }
+        .btn-outline { border: 1px solid var(--coffee); color: var(--coffee); background: transparent; }
+        .btn-outline:hover { background: var(--coffee); color: #fff; }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: var(--transition);
+        /* Sticky Navigation Bar */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 20px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition);
         }
-        .navbar.scrolled {
-            padding: 12px 8%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: var(--shadow);
+        nav.sticky {
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); padding: 12px 8%;
+            border-bottom: 1px solid var(--glass-border); box-shadow: var(--shadow);
         }
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--coffee-brown);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            position: relative;
-        }
+        .logo { display: flex; flex-direction: column; text-decoration: none; }
+        .logo .brand { font-size: 1.8rem; color: var(--coffee); font-weight: 700; letter-spacing: 1px; }
+        .logo .tagline { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: -4px; }
+        .nav-links { display: flex; list-style: none; align-items: center; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-size: 0.9rem; font-weight: 500; transition: var(--transition); position: relative; }
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px; left: 0; width: 0; height: 1px;
-            background: var(--sage-green);
-            transition: var(--transition);
+            content: ''; position: absolute; width: 0; height: 1.5px; bottom: -4px; left: 0;
+            background-color: var(--sage); transition: var(--transition);
         }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .theme-toggle, .menu-toggle {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .menu-toggle {
-            display: none;
-        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--sage); }
+        .nav-actions { display: flex; align-items: center; gap: 20px; }
+        .theme-toggle, .mobile-menu-btn { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; transition: var(--transition); }
+        .mobile-menu-btn { display: none; }
 
-        /* Hero Section */
+        /* Full Screen Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
-            padding: 0 20px;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; background: linear-gradient(rgba(44,37,32,0.5), rgba(44,37,32,0.4)), url('https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            padding: 0 8%; color: #fff; attachment: fixed;
         }
-        .hero-content {
-            color: var(--white);
-            max-width: 800px;
-        }
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            animation: fadeInUp 1.2s ease;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 35px;
-            color: var(--dusty-pink);
-            animation: fadeInUp 1.5s ease;
-        }
-        .hero .btn-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            animation: fadeInUp 1.8s ease;
-        }
-        .hero .btn-outline {
-            border-color: var(--white);
-            color: var(--white);
-        }
-        .hero .btn-outline:hover {
-            background: var(--white);
-            color: #333;
-        }
+        .hero-content { max-width: 850px; z-index: 20; transform: translateY(30px); opacity: 0; animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.5s; }
+        .hero-content h1 { font-size: 5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; line-height: 1.1; text-shadow: 2px 2px 15px rgba(0,0,0,0.3); }
+        .hero-content p { font-size: 1.4rem; font-family: 'Cormorant Garamond', serif; font-style: italic; margin-bottom: 35px; letter-spacing: 3px; color: var(--rose); text-shadow: 1px 1px 8px rgba(0,0,0,0.3); }
+        .hero-actions { display: flex; justify-content: center; gap: 20px; }
+        .hero-actions .btn-outline { border-color: #fff; color: #fff; }
+        .hero-actions .btn-outline:hover { background: #fff; color: var(--coffee); }
 
-        /* Sections Common */
-        section {
-            padding: 100px 8%;
-            position: relative;
-            z-index: 20;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-header span {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            color: var(--sage-green);
-            font-size: 1.3rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .section-header h2 {
-            font-size: 2.8rem;
-            color: var(--coffee-brown);
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-        }
+        @keyframes fadeInUp { to { transform: translateY(0); opacity: 1; } }
 
-        /* About & Story Grid */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .about-img-box {
-            position: relative;
-        }
-        .about-img-box img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-        .about-img-box::after {
-            content: '';
-            position: absolute;
-            top: -20px; left: -20px; width: 100%; height: 100%;
-            border: 2px solid var(--dusty-pink);
-            border-radius: 20px;
-            z-index: -1;
-        }
-        .about-text h3 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--coffee-brown);
-        }
-        .about-text p {
-            line-height: 1.8;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-        .mv-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .mv-card {
-            padding: 25px;
-        }
-        .mv-card i {
-            font-size: 1.8rem;
-            color: var(--sage-green);
-            margin-bottom: 15px;
-        }
-        .mv-card h4 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--coffee-brown);
-        }
-
-        /* Why Choose Us & Counters */
-        .why-section {
-            background: rgba(138, 154, 134, 0.05);
-        }
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .why-card {
-            text-align: center;
-            padding: 40px 30px;
-        }
-        .why-card i {
-            font-size: 2.5rem;
-            color: var(--coffee-brown);
-            margin-bottom: 20px;
-        }
-        .why-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-        .why-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
+        /* About, Story, Mission, Vision, Why Choose Us Sections Grid Layouts */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-img-container { position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+        .about-img-container img { width: 100%; height: 500px; object-fit: cover; transition: var(--transition); }
+        .about-img-container:hover img { transform: scale(1.04); }
+        .about-text h3 { font-size: 2.2rem; color: var(--coffee); margin-bottom: 20px; }
+        .about-text p { margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem; }
+        .mv-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 35px; }
+        .mv-card { padding: 25px; }
+        .mv-card i { font-size: 2rem; color: var(--sage); margin-bottom: 15px; }
+        .mv-card h4 { font-size: 1.4rem; color: var(--coffee); margin-bottom: 10px; }
         
-        .counter-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 70px;
-            text-align: center;
-        }
-        .counter-box h2 {
-            font-size: 3.5rem;
-            color: var(--sage-green);
-            margin-bottom: 5px;
-        }
-        .counter-box p {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
+        /* Why Choose Us Section */
+        .wcu-section { background: var(--white); }
+        .wcu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .wcu-card { text-align: center; padding: 40px 25px; }
+        .wcu-card i { font-size: 2.5rem; color: var(--sage); margin-bottom: 20px; display: inline-block; }
+        .wcu-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--coffee); }
+        .wcu-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Dynamic Component Category Grid Toggles for Menu & Florals */
+        .menu-filter-wrapper { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 45px; }
+        .filter-btn { padding: 10px 24px; border-radius: 25px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
+        .filter-btn.active, .filter-btn:hover { background: var(--sage); color: #fff; border-color: var(--sage); }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { overflow: hidden; display: flex; flex-direction: column; height: 100%; }
+        .product-img { width: 100%; height: 240px; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; transition: var(--transition); }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .product-details h4 { font-size: 1.4rem; color: var(--coffee); margin-bottom: 8px; }
+        .product-details p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; }
+        .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--coffee); }
+
+        /* Specialty Content Sections (Combos, Hampers, Featured, Offers) */
+        .special-section { background: var(--white); }
+        .combo-grid, .hampers-grid, .featured-grid, .offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+        
+        /* Animated Business Counters */
+        .counters-section { background: linear-gradient(rgba(74, 53, 37, 0.85), rgba(74, 53, 37, 0.85)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200') center center/cover; color: #fff; text-align: center; }
+        .counters-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .counter-box h2 { font-size: 3.5rem; color: var(--rose); margin-bottom: 5px; }
+        .counter-box p { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 500; }
+
+        /* Premium Aesthetic Visual Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; height: 280px; box-shadow: var(--shadow); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(74, 53, 37, 0.7); display: flex; justify-content: center; align-items: center; opacity: 0; transition: var(--transition); }
+        .gallery-overlay i { color: #fff; font-size: 2rem; transform: scale(0.7); transition: var(--transition); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .gallery-overlay i { transform: scale(1); }
+        .gallery-item:hover img { transform: scale(1.08); }
+
+        /* Customer Testimonials Carousel/Grid */
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testimonial-card { padding: 35px; position: relative; }
+        .testimonial-card .quote-icon { position: absolute; top: 20px; right: 20px; font-size: 2.5rem; color: var(--sage-light); }
+        .stars { color: #D4A373; margin-bottom: 15px; font-size: 0.85rem; }
+        .testimonial-card p { font-style: italic; font-size: 0.95rem; margin-bottom: 25px; color: var(--text-muted); }
+        .client-profile { display: flex; align-items: center; gap: 15px; }
+        .client-profile img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .client-info h4 { font-size: 1.1rem; color: var(--coffee); }
+        .client-info span { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* Editorial Blog Section */
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+        .blog-card { overflow: hidden; display: flex; flex-direction: column; }
+        .blog-img { width: 100%; height: 230px; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; }
+        .blog-content { padding: 25px; }
+        .blog-meta { font-size: 0.75rem; color: var(--sage); font-weight: 500; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .blog-content h3 { font-size: 1.4rem; color: var(--coffee); margin-bottom: 12px; line-height: 1.3; }
+        .blog-content p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+        .read-more { font-size: 0.85rem; font-weight: 600; color: var(--coffee); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: var(--transition); }
+        .read-more:hover { color: var(--sage); }
+
+        /* FAQ Accordion Section */
+        .faq-section { background: var(--white); }
+        .faq-container { max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .faq-item { border-radius: 12px; overflow: hidden; }
+        .faq-trigger { width: 100%; text-align: left; padding: 22px 30px; background: transparent; border: none; font-size: 1.1rem; font-weight: 600; color: var(--coffee); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .faq-icon { transition: var(--transition); font-size: 0.9rem; }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1); background: transparent; }
+        .faq-content p { padding: 0 30px 22px 30px; font-size: 0.9rem; color: var(--text-muted); }
+        .faq-item.active .faq-icon { transform: rotate(180deg); color: var(--sage); }
+        .faq-item.active .faq-content { max-height: 200px; }
+
+        /* Social Media Instagram Hub Preview */
+        .instagram-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 0 20px; }
+        .insta-item { position: relative; overflow: hidden; aspect-ratio: 1; border-radius: 8px; box-shadow: var(--shadow); }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .insta-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(122, 154, 130, 0.75); display: flex; justify-content: center; align-items: center; opacity: 0; transition: var(--transition); color: #fff; font-size: 1.4rem; }
+        .insta-item:hover .insta-overlay { opacity: 1; }
+        .insta-item:hover img { transform: scale(1.06); }
+
+        /* Premium Integrated Contact & Location Block Hub */
+        .contact-grid { display: grid; grid-template-columns: 1.2fr 1.8fr; gap: 50px; }
+        .contact-details-box { display: flex; flex-direction: column; gap: 25px; }
+        .info-card { padding: 25px; display: flex; gap: 20px; align-items: flex-start; }
+        .info-card i { font-size: 1.5rem; color: var(--sage); background: var(--sage-light); padding: 12px; border-radius: 50%; }
+        .info-card h4 { font-size: 1.2rem; color: var(--coffee); margin-bottom: 5px; }
+        .info-card p, .info-card a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; }
+        
+        .contact-form-container { padding: 40px; }
+        .form-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+        .form-group label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 500; color: var(--text-muted); }
+        .form-control { background: var(--cream); border: 1px solid var(--glass-border); border-radius: 8px; padding: 14px; font-family: inherit; font-size: 0.9rem; color: var(--text-main); transition: var(--transition); }
+        .form-control:focus { outline: none; border-color: var(--sage); box-shadow: 0 0 0 3px var(--sage-light); }
+        
+        .map-wrapper { width: 100%; height: 350px; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); margin-top: 40px; border: 1px solid var(--glass-border); position: relative; }
+        .map-placeholder { width: 100%; height: 100%; background: #e5e3df; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: #555; }
+        .map-placeholder i { font-size: 3rem; color: var(--sage); margin-bottom: 15px; }
+
+        /* Newsletter Subscription Layout */
+        .newsletter-section { background: var(--sage-light); text-align: center; padding: 80px 8%; }
+        .newsletter-box { max-width: 600px; margin: 0 auto; }
+        .newsletter-box h2 { font-size: 2.5rem; color: var(--coffee); margin-bottom: 15px; }
+        .newsletter-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 30px; }
+        .newsletter-form { display: flex; gap: 10px; background: var(--white); padding: 6px; border-radius: 35px; box-shadow: var(--shadow); border: 1px solid var(--glass-border); }
+        .newsletter-form .form-control { border: none; background: transparent; padding-left: 25px; flex-grow: 1; }
+        .newsletter-form .form-control:focus { box-shadow: none; }
+        .newsletter-form .btn { padding: 12px 28px; }
+
+        /* Elegant Footer Structural Frame */
+        footer { background: #2C2520; color: #C0B7B1; padding: 80px 8% 30px 8%; font-size: 0.9rem; position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 50px; }
+        .footer-brand .logo .brand { color: #FDFBF7; }
+        .footer-brand p { margin-top: 15px; font-size: 0.85rem; line-height: 1.6; }
+        .footer-col h3 { color: #FDFBF7; font-size: 1.3rem; margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col ul a { color: #C0B7B1; text-decoration: none; transition: var(--transition); font-size: 0.85rem; }
+        .footer-col ul a:hover { color: var(--rose); padding-left: 5px; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); color: #FDFBF7; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: var(--transition); border: 1px solid rgba(255,255,255,0.1); }
+        .social-links a:hover { background: var(--sage); border-color: var(--sage); transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px; text-align: center; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+
+        /* Utility Floating Controls */
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; background: var(--coffee); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 999; box-shadow: var(--shadow); }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--sage); transform: translateY(-3px); }
+
+        /* Full Responsive Design Adaptation Rules */
+        @media(max-width: 1200px) {
+            .wcu-grid { grid-template-columns: repeat(2, 1fr); }
+            .combo-grid, .hampers-grid, .featured-grid, .offers-grid, .blog-grid, .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .instagram-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* Menu Tabs & Display */
-        .menu-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .tab-btn {
-            background: transparent;
-            border: 1px solid var(--coffee-brown);
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            color: var(--coffee-brown);
-            transition: var(--transition);
-        }
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--coffee-brown);
-            color: var(--white);
-        }
-        .menu-container {
-            display: none;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-        }
-        .menu-container.active {
-            display: grid;
-        }
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px dashed rgba(74, 59, 50, 0.2);
-        }
-        .menu-details h3 {
-            font-size: 1.4rem;
-            color: var(--text-main);
-        }
-        .menu-details p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-        .menu-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--sage-green);
-        }
-
-        /* Product Catalog Cards */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        .product-card {
-            overflow: hidden;
-            position: relative;
-        }
-        .product-img {
-            height: 320px;
-            overflow: hidden;
-            position: relative;
-            border-radius: 12px 12px 0 0;
-        }
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        .product-card:hover .product-img img {
-            transform: scale(1.08);
-        }
-        .product-info {
-            padding: 25px;
-            text-align: center;
-        }
-        .product-info span {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--sage-green);
-        }
-        .product-info h3 {
-            font-size: 1.5rem;
-            margin: 8px 0;
-        }
-        .product-info .price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--coffee-brown);
-            margin-bottom: 15px;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-        }
-        .gallery-item {
-            position: relative;
-            height: 280px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(7A, 59, 50, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        .gallery-overlay i {
-            color: var(--white);
-            font-size: 2rem;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* Testimonials */
-        .testimonial-section {
-            background: rgba(232, 197, 200, 0.15);
-        }
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .testi-card {
-            padding: 40px;
-            text-align: center;
-        }
-        .testi-card p {
-            font-style: italic;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-        .testi-profile img {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-        .testi-profile h4 {
-            font-size: 1.2rem;
-            margin-bottom: 2px;
-        }
-        .testi-profile span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
-        }
-        .team-card {
-            text-align: center;
-            overflow: hidden;
-        }
-        .team-img {
-            height: 340px;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .team-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        .team-card:hover .team-img img {
-            transform: scale(1.05);
-        }
-        .team-socials {
-            position: absolute;
-            bottom: -50px; left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            background: var(--white);
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        .team-card:hover .team-socials {
-            bottom: 20px;
-        }
-        .team-socials a {
-            color: var(--coffee-brown);
-            transition: var(--transition);
-        }
-        .team-socials a:hover {
-            color: var(--sage-green);
-        }
-
-        /* Blog Section */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        .blog-card {
-            overflow: hidden;
-        }
-        .blog-img {
-            height: 240px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .blog-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .blog-meta {
-            margin: 20px 0 10px 0;
-            font-size: 0.8rem;
-            color: var(--sage-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .blog-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        .blog-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .read-more {
-            text-decoration: none;
-            color: var(--coffee-brown);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* FAQ Section */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .faq-item {
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 15px;
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 10px 0;
-        }
-        .faq-question h3 {
-            font-size: 1.3rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .faq-answer p {
-            padding-top: 15px;
-            color: var(--text-muted);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-        }
-        .faq-item.active i {
-            transform: rotate(180deg);
-        }
-
-        /* Newsletter */
-        .newsletter-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
-            color: var(--white);
-            text-align: center;
-            padding: 80px 8%;
-        }
-        .newsletter-section h2 {
-            color: var(--white);
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        .newsletter-section p {
-            max-width: 500px;
-            margin: 0 auto 30px auto;
-            font-weight: 300;
-        }
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 10px;
-        }
-        .newsletter-form input {
-            flex: 1;
-            padding: 15px 25px;
-            border-radius: 30px;
-            border: none;
-            outline: none;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-        }
-        .contact-info-panel h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-        }
-        .contact-details {
-            margin-bottom: 40px;
-        }
-        .contact-detail-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        .contact-detail-item i {
-            font-size: 1.4rem;
-            color: var(--sage-green);
-            margin-top: 4px;
-        }
-        .contact-detail-item h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .contact-detail-item p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        .map-placeholder {
-            width: 100%;
-            height: 250px;
-            background: #eee;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .contact-form-panel {
-            padding: 40px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(0,0,0,0.02);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            outline: none;
-            color: var(--text-main);
-            transition: var(--transition);
-        }
-        [data-theme="dark"] .form-group input, [data-theme="dark"] .form-group textarea {
-            background: rgba(255,255,255,0.02);
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--sage-green);
-        }
-
-        /* Footer */
-        footer {
-            background: #1C1A17;
-            color: #DFDFDF;
-            padding: 80px 8% 30px 8%;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-            gap: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 5px;
-        }
-        .footer-logo h2 {
-            font-size: 2.2rem;
-            color: var(--dusty-pink);
-            margin-bottom: 15px;
-        }
-        .footer-logo p {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #A0A0A0;
-        }
-        .footer-col h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--white);
-            position: relative;
-        }
-        .footer-col ul {
-            list-style: none;
-        }
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-        .footer-col ul li a {
-            color: #A0A0A0;
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-        .footer-col ul li a:hover {
-            color: var(--dusty-pink);
-            padding-left: 5px;
-        }
-        .footer-socials {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .footer-socials a {
-            width: 38px;
-            height: 38px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .footer-socials a:hover {
-            background: var(--dusty-pink);
-            color: #1C1A17;
-        }
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            font-size: 0.85rem;
-            color: #777777;
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            width: 45px; height: 45px;
-            background: var(--coffee-brown);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .navbar { padding: 20px 5%; }
-            .navbar.scrolled { padding: 12px 5%; }
-            section { padding: 80px 5%; }
+        @media(max-width: 992px) {
+            .hero-content h1 { font-size: 3.8rem; }
             .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-            .hero h1 { font-size: 3.2rem; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
+            .counters-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .mobile-menu-btn { display: block; }
             .nav-links {
-                position: fixed;
-                top: 0; right: -100%; width: 280px; height: 100vh;
-                background: var(--white);
-                flex-direction: column;
-                justify-content: center;
-                gap: 40px;
-                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
-                transition: 0.5s ease;
+                position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+                background: var(--white); flex-direction: column; align-items: flex-start;
+                padding: 100px 40px; box-shadow: -10px 0 30px rgba(0,0,0,0.05); transition: 0.5s ease;
             }
             .nav-links.active { right: 0; }
-            .mv-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .newsletter-form { flex-direction: column; }
-            .newsletter-form .btn { width: 100%; }
         }
 
-        @keyframes fadeIn { to { opacity: 1; } }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); }
-            100% { transform: translateY(-10vh) translateX(100px) rotate(360deg); }
+        @media(max-width: 768px) {
+            section { padding: 70px 5% 50px 5%; }
+            .section-header h2 { font-size: 2.3rem; }
+            .mv-cards, .combo-grid, .hampers-grid, .featured-grid, .offers-grid, .blog-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .gallery-grid, .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-group-row { grid-template-columns: 1fr; gap: 0; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader-logo">KR Café & Florals</div>
+    <!-- Loading Screen Screen Overlay -->
+    <div id="loader">
         <div class="spinner"></div>
+        <h2 class="brand-font" style="color: var(--coffee); letter-spacing: 2px;">KR Café & Florals</h2>
     </div>
 
-    <!-- Floating Flower Petals Animations -->
-    <div class="petal-container" id="petalContainer"></div>
+    <!-- Background Animation Canvas Context -->
+    <canvas id="petal-canvas"></canvas>
 
-    <!-- Sticky Navigation Bar -->
-    <nav class="navbar">
-        <a href="#" class="logo">KR <span style="font-family:'Montserrat'; font-size:1rem; font-weight:300;">Café & Florals</span></a>
+    <!-- Header & Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <span class="brand">KR Café & Florals</span>
+            <span class="tagline">Where Coffee Meets Blooms</span>
+        </a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#florals">Florals</a></li>
-            <li><a href="#hampers">Hampers</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" onclick="toggleMenu()">Our Story</a></li>
+            <li><a href="#menu" onclick="toggleMenu()">Café Menu</a></li>
+            <li><a href="#florals" onclick="toggleMenu()">Florals</a></li>
+            <li><a href="#combos" onclick="toggleMenu()">Packages</a></li>
+            <li><a href="#curations" onclick="toggleMenu()">Curations</a></li>
+            <li><a href="#blog" onclick="toggleMenu()">Journal</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </ul>
         <div class="nav-actions">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle structural theme interface dark or light view mode">
                 <i class="fa-solid fa-moon"></i>
             </button>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+            <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle configuration application mobile presentation drop link menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Full-Screen Hero Section -->
-    <header class="hero">
+    <!-- Full Screen Premium Architecture Hero Frame Component Section -->
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1 data-aos="fade-up">KR Café & Florals</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Where Coffee Meets Blooms</p>
-            <div class="btn-group" data-aos="fade-up" data-aos-delay="400">
-                <a href="#menu" class="btn btn-primary">Explore Menu</a>
-                <a href="#florals" class="btn btn-outline">View Florals</a>
+            <h1>Artisanal Brews & Premium Blooms</h1>
+            <p>Immerse yourself in a luxurious sensory sanctuary curated for connoisseurs of taste and design.</p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn btn-primary">Explore Café Menu</a>
+                <a href="#florals" class="btn btn-outline">View Collections</a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- About Us, Our Story, Mission, Vision -->
-    <section id="about" class="about-section">
-        <div class="section-header" data-aos="fade-up">
-            <span>Discover Our Essence</span>
-            <h2>Our Story & Essence</h2>
-        </div>
+    <!-- Narrative Corporate Foundation Segment Section Layer -->
+    <section id="about">
         <div class="about-grid">
-            <div class="about-img-box" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1545232979-8bf34eb9757b?auto=format&fit=crop&q=80&w=800" alt="Beautiful cafe setting with table and flowers">
+            <div class="about-img-container">
+                <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=800" alt="Beautiful cafe setting with elegant flowers">
             </div>
-            <div class="about-text" data-aos="fade-left">
-                <h3>Crafting Aromas, Cultivating Beauty</h3>
-                <p>Founded with a passion for the sensory delights of artisanal, perfectly extracted espresso and the organic grace of freshly picked botanical structures, KR Café & Florals offers a sanctuary where modern individuals unwind. We believe that life’s finest moments occur at the intersection of taste and design.</p>
+            <div class="about-text">
+                <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--sage); font-weight: 600;">Welcome to Our Sanctuary</span>
+                <h3>Our Story</h3>
+                <p>Founded on a profound passion for exquisite culinary craftsmanship and organic structural artistry, KR Café & Florals was created to integrate the aromatic warmth of specialty standard coffees with the vibrant emotional grace of seasonal flowers.</p>
+                <p>Every single cup is meticulously extracted from ethically harvested estate beans, while each bouquet is thoughtfully curated by artistic master florists to breathe life, elegance, and beauty into your everyday luxury moments.</p>
                 
-                <div class="mv-grid">
-                    <div class="mv-card glass-card">
+                <div class="mv-cards">
+                    <div class="glass-card mv-card">
                         <i class="fa-solid fa-eye"></i>
-                        <h4>Our Vision</h4>
-                        <p style="font-size: 0.85rem; margin-bottom: 0;">To become the ultimate metropolitan sanctuary, combining the highest grade of specialty standard beverages with curated visual floral artistry.</p>
-                    </div>
-                    <div class="mv-card glass-card">
-                        <i class="fa-solid fa-bullseye"></i>
                         <h4>Our Mission</h4>
-                        <p style="font-size: 0.85rem; margin-bottom: 0;">To ethically source exceptional beans and premium stems, elevating ordinary morning routines into exquisite lifestyle experiences.</p>
+                        <p>To deliver unmatched sensory experiences by pairing standard specialty coffees with breathtaking botanical structural design.</p>
+                    </div>
+                    <div class="glass-card mv-card">
+                        <i class="fa-solid fa-compass"></i>
+                        <h4>Our Vision</h4>
+                        <p>To cultivate an elegant, welcoming community environment recognized globally for high-end boutique hospitality.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us & Animated Counters -->
-    <section class="why-section">
-        <div class="section-header" data-aos="fade-up">
-            <span>What Sets Us Apart</span>
-            <h2>Why Choose KR Café</h2>
+    <!-- Why Choose Us Component Grid Layer Section Grid -->
+    <section class="wcu-section">
+        <div class="section-header">
+            <h2>Why Choose Us</h2>
+            <p>We combine exquisite attention to detail with premium, sustainably sourced ingredients and materials.</p>
         </div>
-        <div class="why-grid">
-            <div class="why-card glass-card" data-aos="fade-up">
+        <div class="wcu-grid">
+            <div class="glass-card wcu-card">
                 <i class="fa-solid fa-mug-hot"></i>
                 <h3>Artisanal Micro-Roasts</h3>
-                <p>We work closely with sustainable farmers to roast exceptional single-origin varieties weekly, locking in maximum complexity.</p>
+                <p>Sustainably cultivated single-origin Arabica beans roasted locally to achieve unparalleled clarity and flavor profile execution.</p>
             </div>
-            <div class="why-card glass-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card wcu-card">
                 <i class="fa-solid fa-seedling"></i>
-                <h3>Fresh Botanical Curations</h3>
-                <p>Our floral arrangements are composed daily from high-altitude local nurseries and elite eco-certified global imports.</p>
+                <h3>Master Floral Artistry</h3>
+                <p>Individually tailored floral arrangements hand-designed by award-winning decorators to elevate residential and commercial environments.</p>
             </div>
-            <div class="why-card glass-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card wcu-card">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <h3>Bespoke Glassmorphism Ambiance</h3>
-                <p>Unwind in an architectural masterwork engineered with smooth textures, relaxing plants, and flawless minimalism.</p>
+                <h3>Glassmorphism Ambiance</h3>
+                <p>An architecturally stunning structural space detailed with organic greenery, subtle modern textures, and elegant design accents.</p>
+            </div>
+            <div class="glass-card wcu-card">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Bespoke Guest Services</h3>
+                <p>Dedicated personal consultation frameworks ensuring customized menu options, elite event staging, and premium corporate gifting packages.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Café Menu Section Layout Integration -->
+    <section id="menu">
+        <div class="section-header">
+            <h2>Premium Café Menu</h2>
+            <p>Savor our luxurious curation of artisanal espresso creations, organic dynamic teas, premium bakery, and delicate light bites.</p>
+        </div>
+        
+        <div class="menu-filter-wrapper">
+            <button class="filter-btn active" onclick="filterMenu('all')">All Offerings</button>
+            <button class="filter-btn" onclick="filterMenu('coffee')">Coffee</button>
+            <button class="filter-btn" onclick="filterMenu('tea')">Tea</button>
+            <button class="filter-btn" onclick="filterMenu('signature')">Signatures</button>
+            <button class="filter-btn" onclick="filterMenu('bakery')">Bakery</button>
+            <button class="filter-btn" onclick="filterMenu('desserts')">Desserts</button>
+            <button class="filter-btn" onclick="filterMenu('bites')">Light Bites</button>
+        </div>
+
+        <div class="product-grid" id="menuGrid">
+            <!-- COFFEE CATEGORY CONTENT CARDS -->
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1510972527409-cca19de31749?auto=format&fit=crop&q=80&w=400" alt="Espresso">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Classic Espresso</h4>
+                        <p>Intense, full-bodied single-origin shot featuring bright notes of citrus and rich dark cacao.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 220</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1551046710-7e57f48521ab?auto=format&fit=crop&q=80&w=400" alt="Americano">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4> Caffè Americano</h4>
+                        <p>Rich espresso shots tempered smoothly with hot water for a refined, classic dynamic profile.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 260</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=400" alt="Cappuccino">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Velvet Cappuccino</h4>
+                        <p>Equal parts rich espresso, steamed milk, and dense micro-foam layered perfectly with dusting chocolate.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 320</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400" alt="Latte">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Boutique Caffè Latte</h4>
+                        <p>Silky steamed whole milk balanced elegantly with a double shot of house espresso blend.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 340</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&q=80&w=400" alt="Flat White">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Artisanal Flat White</h4>
+                        <p>Ristretto shots infused with smooth micro-foam for a forward, luxurious coffee flavor texture.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 340</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1606791405792-1004f1718d0c?auto=format&fit=crop&q=80&w=400" alt="Mocha">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Caffè Mocha Elegance</h4>
+                        <p>Decadent Dark single-origin chocolate syrup combined seamlessly with espresso and velvet milk cream.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 390</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&q=80&w=400" alt="Caramel Macchiato">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Caramel Macchiato</h4>
+                        <p>Steamed milk with vanilla syrup marked with espresso and drizzled with buttery caramel sauce.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 410</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1594133900953-e6294a41353c?auto=format&fit=crop&q=80&w=400" alt="Vanilla Latte">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Madagascar Vanilla Latte</h4>
+                        <p>Our classic smooth espresso latte infused with organic Madagascar vanilla bean pod infusion extracts.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 380</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="coffee">
+                <img class="product-img" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&q=80&w=400" alt="Cold Brew">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Single-Origin Cold Brew</h4>
+                        <p>Steeped cold for 18 hours to release natural, exceptionally clean chocolate and berry undertones.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 350</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEA CATEGORY CARDS -->
+            <div class="glass-card product-card" data-cat="tea">
+                <img class="product-img" src="https://images.unsplash.com/photo-1627435601357-37d178eddb52?auto=format&fit=crop&q=80&w=400" alt="Green Tea">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Organic Imperial Green</h4>
+                        <p>Hand-picked steamed green tea leaves presenting a crisp, refreshing earthy antioxidant profiles.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 240</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="tea">
+                <img class="product-img" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=400" alt="Earl Grey">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Majestic Earl Grey</h4>
+                        <p>Robust premium loose black tea infused flawlessly with premium pure natural oil of Bergamot rind.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 250</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="tea">
+                <img class="product-img" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=400" alt="Chamomile">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Soothing Chamomile Blossom</h4>
+                        <p>Pure herbal floral chamomile flowers providing deep calming relaxation notes for the mind.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 240</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="tea">
+                <img class="product-img" src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?auto=format&fit=crop&q=80&w=400" alt="Masala Chai">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Artisanal Masala Chai</h4>
+                        <p>Traditional spiced blend boiled with fresh ginger, green cardamom, cloves, and premium CTC tea leaves.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 280</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIGNATURE DRINKS CATEGORY CARDS -->
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&q=80&w=400" alt="Rose Latte">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Signature Rose Latte</h4>
+                        <p>Delicate velvet espresso layout combined with organic rose water extract and pink floral dusting flakes.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 420</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&q=80&w=400" alt="Lavender Honey Latte">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Lavender Honey Latte</h4>
+                        <p>Delightful combination of culinary grade French lavender petals essence and natural local honey drops.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 440</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=400" alt="Strawberry Matcha">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Strawberry Matcha Latte</h4>
+                        <p>Beautiful structural separation layer of fresh strawberry puree topped with whisked Uji green tea matcha.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 460</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=400" alt="Mocha Frappe">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Mocha Crunch Frappé</h4>
+                        <p>Blended ice treat loaded with deep cocoa, house espresso base, and whipped milk structures.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 450</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=400" alt="Iced Caramel Latte">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Iced Caramel Ribbon Latte</h4>
+                        <p>Chilled double shot espresso poured over premium ice layers with rich, dripping buttery caramel elements.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 420</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&q=80&w=400" alt="Smoothie">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Antioxidant Berry Smoothie</h4>
+                        <p>Thick blended mix of organic wild blueberries, strawberries, Greek yogurt, and chia seeds seeds.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 420</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=400" alt="Fresh Juice">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Cold Pressed Sunshine Juice</h4>
+                        <p>Pure, raw pressed dynamic organic carrots, oranges, fresh ginger roots, and yellow lemon layers.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 380</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&q=80&w=400" alt="Mocktail">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Hibiscus Elderflower Mocktail</h4>
+                        <p>Sparkling artisanal tonic water layered with wild hibiscus flower reduction syrup and elderflower essence.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 390</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="signature">
+                <img class="product-img" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=400" alt="Seasonal Special">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Autumn Pumpkin Spice Mist</h4>
+                        <p>Seasonal premium special crafted using organic pumpkin puree spices, rich double espresso and nutmeg toppings.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 460</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAKERY CATEGORY CARDS -->
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=400" alt="Butter Croissant">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Flaky French Butter Croissant</h4>
+                        <p>Traditional pure Normandy butter laminated pastry layers baked crisp to golden brown excellence.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 190</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=400" alt="Almond Croissant">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Premium Almond Croissant</h4>
+                        <p>Double-baked butter croissant loaded with rich house frangipane paste filling and toasted almond flakes.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 240</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&q=80&w=400" alt="Chocolate Croissant">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Pain au Chocolat</h4>
+                        <p>Decadent semi-sweet Belgian chocolate bars wrapped inside light puff pastry layers.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 220</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=400" alt="Blueberry Muffin">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Wild Blueberry Streusel Muffin</h4>
+                        <p>Plump organic berries inside soft sponge cake tops detailed with butter crumble coatings.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 180</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1582294119803-a1df16cdb9cc?auto=format&fit=crop&q=80&w=400" alt="Chocolate Muffin">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Double Chocolate Muffin</h4>
+                        <p>Moist rich dark cocoa batter loaded thoroughly with molten milk chocolate chunks chips.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 180</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=400" alt="Cinnamon Roll">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Glazed Cinnamon Swirl Roll</h4>
+                        <p>Soft brioche dough spread with Korintjie cinnamon paste finished with smooth cream cheese glaze toppings.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 210</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1600431521340-491eca880813?auto=format&fit=crop&q=80&w=400" alt="Banana Bread">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Toasted Walnut Banana Bread</h4>
+                        <p>Caramelized banana structural batter slice baked alongside fresh crushed mountain walnut fragments.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 170</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bakery">
+                <img class="product-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&q=80&w=400" alt="Cookies">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Signature Sea Salt Chocolate Cookie</h4>
+                        <p>Chewy center cookie featuring giant chunks of premium chocolate finished with Maldon sea salt crystals flakes.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 140</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESSERTS CATEGORY CARDS -->
+            <div class="glass-card product-card" data-cat="desserts">
+                <img class="product-img" src="https://images.unsplash.com/photo-1524351199679-46cddf530c04?auto=format&fit=crop&q=80&w=400" alt="Cheesecake">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Classic New York Cheesecake</h4>
+                        <p>Dense, velvety smooth cream cheese filling over a buttery graham cracker biscuit crust base.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 450</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="desserts">
+                <img class="product-img" src="https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?auto=format&fit=crop&q=80&w=400" alt="Red Velvet">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Luxurious Red Velvet Sponge</h4>
+                        <p>Elegant layers of cocoa sponge cake paired with Madagascar vanilla cream cheese icing wraps.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 420</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="desserts">
+                <img class="product-img" src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&q=80&w=400" alt="Brownie">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Fudge Chocolate Brownie</h4>
+                        <p>Intensely rich dark chocolate fudge bar containing a soft center, drizzled with hot ganache drops.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 250</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="desserts">
+                <img class="product-img" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=400" alt="Tiramisu">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Boutique Espresso Tiramisu</h4>
+                        <p>Ladyfingers soaked beautifully in our house cold brew blend layered with light mascarpone sabayon foam.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 480</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="desserts">
+                <img class="product-img" src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&q=80&w=400" alt="Lemon Tart">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Citrus Lemon Meringue Tart</h4>
+                        <p>Crisp shortcrust pastry shell filled with zesty curd topped with torched fluffy egg white meringue peaks.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 360</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="desserts">
+                <img class="product-img" src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=80&w=400" alt="Macarons">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Parisian Macaron Collection</h4>
+                        <p>Assortment of five delicate almond shells containing rich buttercream fillings (Rose, Matcha, Vanilla, Caramel, Cocoa).</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 490</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIGHT CAFE BITES CATEGORY CARDS -->
+            <div class="glass-card product-card" data-cat="bites">
+                <img class="product-img" src="https://images.unsplash.com/photo-1524351199679-46cddf530c04?auto=format&fit=crop&q=80&w=400" alt="Chicken Sandwich">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Grilled Pesto Chicken Sandwich</h4>
+                        <p>Artisanal sourdough loaded with herb grilled chicken strips, house basil pesto paste, and fresh mozzarella wheels.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 480</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bites">
+                <img class="product-img" src="https://images.unsplash.com/photo-1538154591e64-c18bd2477481?auto=format&fit=crop&q=80&w=400" alt="Panini">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Mediterranean Veggie Panini</h4>
+                        <p>Pressed ciabatta bread stuffed with fire roasted bell peppers, baby spinach, artichokes, and tangy feta cheese crumbles.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 420</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bites">
+                <img class="product-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=400" alt="Wrap">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Smoked Salmon Caesar Wrap</h4>
+                        <p>Whole wheat tortilla wrapping premium smoked salmon ribbons, crisp romaine lettuce, and parmesan dressing loops.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 520</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bites">
+                <img class="product-img" src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&q=80&w=400" alt="Avocado Toast">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Artisanal Avocado Sourdough Toast</h4>
+                        <p>Crushed hass avocados over thick crusty toast topped with heirloom cherry tomatoes and organic micro-greens.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 390</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bites">
+                <img class="product-img" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=400" alt="Breakfast Platter">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Boutique Signature Breakfast Platter</h4>
+                        <p>Two organic eggs cooked to order, chicken sausages, sautéed button mushrooms, grilled tomatoes, and toasted bread lines.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 650</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Florals Structural Framework Collection Layout Section -->
+    <section id="florals" style="background: var(--white);">
+        <div class="section-header">
+            <h2>Premium Florals Collection</h2>
+            <p>Breathe breathtaking luxury into your personal spaces with our magnificent designer arrangements hand-cut to absolute perfection.</p>
+        </div>
+
+        <div class="menu-filter-wrapper">
+            <button class="filter-btn active" onclick="filterFlorals('all')">All Arrangements</button>
+            <button class="filter-btn" onclick="filterFlorals('bouquets')">Bouquets</button>
+            <button class="filter-btn" onclick="filterFlorals('boxes')">Luxury Boxes</button>
+            <button class="filter-btn" onclick="filterFlorals('occasions')">Occasions</button>
+        </div>
+
+        <div class="product-grid" id="floralsGrid">
+            <!-- FLORALS RAW ARRAY DATA INTERFACES -->
+            <div class="glass-card product-card" data-cat="bouquets">
+                <img class="product-img" src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=400" alt="Roses">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Ecuadorian Crimson Rose Trio</h4>
+                        <p>A striking presentation of long-stemmed luxury deep red roses wrapped elegantly in premium matte structural paper.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 3,500</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bouquets">
+                <img class="product-img" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&q=80&w=400" alt="Tulips">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Royal Dutch Pastel Tulips</h4>
+                        <p>Crisp, direct imported premium soft pink and white tulips grouped seamlessly to create minimalist modern lines.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 4,200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bouquets">
+                <img class="product-img" src="https://images.unsplash.com/photo-1587334206574-351ecdb7b51e?auto=format&fit=crop&q=80&w=400" alt="Lilies">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Casablanca Oriental White Lilies</h4>
+                        <p>Highly fragrant, grand pristine white lily stems accented with structural seasonal eucalyptus foliage.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 3,800</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="boxes">
+                <img class="product-img" src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&q=80&w=400" alt="Orchids">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Imperial Phalaenopsis Orchid Box</h4>
+                        <p>Stunning triple stem purple cascading orchids grounded beautifully inside a premium velvet ceramic box base.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 7,500</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bouquets">
+                <img class="product-img" src="https://images.unsplash.com/photo-1562240020-ce31ccb0fa7d?auto=format&fit=crop&q=80&w=400" alt="Carnations">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Blush Ruffle Carnation Medley</h4>
+                        <p>Soft structural presentation of delicate carnations mixed with white baby breath floral accent clusters.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 2,900</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&q=80&w=400" alt="Sunflowers">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Radiant Summer Sunflower Halo</h4>
+                        <p>Vibrant, sun-kissed large golden sunflowers structured nicely to provide warm celebratory energy.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 2,600</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="bouquets">
+                <img class="product-img" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=400" alt="Hydrangeas">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Celestial Blue Hydrangea Globe</h4>
+                        <p>Massive, cloud-like clusters of premium tinted blue hydrangeas configured inside minimal linen paper.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 4,500</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&q=80&w=400" alt="Mixed Seasonal Bouquet">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Bespoke Seasonal Meadow Mix</h4>
+                        <p>An elite, fluctuating weekly curation of our absolute freshest imported blossoms dynamic garden pairings.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 5,000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="boxes">
+                <img class="product-img" src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&q=80&w=400" alt="Flower Box">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Majestic Suede Gift Box</h4>
+                        <p>Signature structured cylinder box packed cleanly with blush premium roses and pastel lisianthus petals.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 6,800</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=400" alt="Bridal Bouquet">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Ethereal Ivory Bridal Bouquet</h4>
+                        <p>Exquisite wedding bouquet using premium David Austin white roses wrapped neatly with silk ribbons.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 9,500</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=400" alt="Anniversary Bouquet">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Everlasting Devotion Anniversary Mix</h4>
+                        <p>Deep pink ranunculus grouped alongside luxury red roses to represent deep eternal structural bonds.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 5,800</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?auto=format&fit=crop&q=80&w=400" alt="Graduation Bouquet">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Triumphant Spirit Graduation Bunch</h4>
+                        <p>Bright yellow spray roses coupled with vibrant premium white baby breath stalks to project success.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 3,200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=400" alt="Sympathy Flowers">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Serene Grace Sympathy Wreath</h4>
+                        <p>A quiet, reverent framework of pure white seasonal lilies and soft pale white carnation bases.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 6,000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card" data-cat="occasions">
+                <img class="product-img" src="https://images.unsplash.com/photo-1587334206574-351ecdb7b51e?auto=format&fit=crop&q=80&w=400" alt="Customized Arrangements">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>Bespoke Custom Consultation Design</h4>
+                        <p>Collaborate one-on-one with our principal lead decorator to realize your exact design goals.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">From Rs. 8,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee & Flower Combo Packages Segment Block -->
+    <section id="combos">
+        <div class="section-header">
+            <h2>Coffee & Flower Combo Packages</h2>
+            <p>The ultimate sensory symmetry. Perfect options designed for elegant morning surprises and beautiful personal gifts.</p>
+        </div>
+        <div class="combo-grid">
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=600" alt="Petals & Pastries Combo">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Morning Romance Pairing</h4>
+                        <p>Includes a double signature Rose Latte, two fresh Butter Croissants, and a petite hand-tied bundle of fresh pink tulips.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 4,900</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" alt="Brews & Blooms Executive">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Executive Sanctuary Set</h4>
+                        <p>One structural bottle of house Single-Origin Cold Brew, a French Macaron box, and a magnificent luxury Crimson Rose cylinder box.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 8,200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&q=80&w=600" alt="Bespoke Afternoon Harmony">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Ethereal Calm Ritual</h4>
+                        <p>Organic Soothing Chamomile Blossom tea pot set, lemon meringue tart slices, accompanied with a pristine white Casablanca lily vase.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 5,500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Hampers, Featured Products, Best Sellers, & Seasonal Offers Integrated Hub Section -->
+    <section id="curations" class="special-section">
+        <div class="section-header">
+            <h2>Luxury Gift Hampers & Curations</h2>
+            <p>Exquisite bespoke collection cases meticulously prepared using our absolute finest lifestyle materials.</p>
+        </div>
+        <h3 class="brand-font" style="font-size: 2rem; color: var(--coffee); margin-bottom: 25px; border-left: 4px solid var(--sage); padding-left: 15px;">Signature Gift Hampers</h3>
+        <div class="hampers-grid" style="margin-bottom: 60px;">
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&q=80&w=600" alt="The Luxe Hamper">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Opulent Celebration Hamper</h4>
+                        <p>Hand-woven premium basket containing custom roasted coffee beans, a luxury brass tea infuser, vanilla cookies, and a premium seasonal mix flower jar.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 12,500</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&q=80&w=600" alt="Wellness Hamper">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Serenity Wellness Box</h4>
+                        <p>Matte presentation casing loaded with lavender honey, dried herbal flower tea leaf jars, an organic scented candle, and pale pink hydrangeas.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 9,800</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600" alt="Connoisseur Hamper">
+                <div class="product-info">
+                    <div class="product-details">
+                        <h4>The Coffee Connoisseur Chest</h4>
+                        <p>Premium wooden crate container carrying three micro-lot single-origin coffee packets, a manual hand grinder, and dark deep crimson roses stems.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 14,000</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Animated Counters -->
-        <div class="counter-container">
+        <h3 class="brand-font" style="font-size: 2rem; color: var(--coffee); margin-bottom: 25px; border-left: 4px solid var(--sage); padding-left: 15px;">Featured & Best Sellers</h3>
+        <div class="featured-grid" style="margin-bottom: 60px;">
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&q=80&w=400" alt="Best Seller 1">
+                <div class="product-info">
+                    <div class="product-details">
+                        <span style="font-size:0.7rem; font-weight:600; text-transform:uppercase; color:var(--dusty-pink);"><i class="fa-solid fa-fire"></i> Best Seller</span>
+                        <h4>Rose Latte Signature Brew</h4>
+                        <p>Our historically most popular signature coffee extraction infused beautifully with edible sweet crimson rose oil layers.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 420</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&q=80&w=400" alt="Best Seller 2">
+                <div class="product-info">
+                    <div class="product-details">
+                        <span style="font-size:0.7rem; font-weight:600; text-transform:uppercase; color:var(--dusty-pink);"><i class="fa-solid fa-star"></i> Featured</span>
+                        <h4>The Majestic Suede Rose Cylinder Box</h4>
+                        <p>A flawless configuration of thirty select imported long-stem deep velvet red roses grouped perfectly in a premium suede display box.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 6,800</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card product-card">
+                <img class="product-img" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=400" alt="Best Seller 3">
+                <div class="product-info">
+                    <div class="product-details">
+                        <span style="font-size:0.7rem; font-weight:600; text-transform:uppercase; color:var(--dusty-pink);"><i class="fa-solid fa-fire"></i> Best Seller</span>
+                        <h4>Artisanal Cold Brew Tiramisu</h4>
+                        <p>Luxurious traditional Italian layer dessert prepared using dark cold brew reductions and light organic mascarpone cheese.</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 480</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="brand-font" style="font-size: 2rem; color: var(--coffee); margin-bottom: 25px; border-left: 4px solid var(--sage); padding-left: 15px;">Seasonal Offers</h3>
+        <div class="offers-grid">
+            <div class="glass-card product-card" style="border: 1px dashed var(--dusty-pink);">
+                <div class="product-info" style="padding: 30px; text-align: center;">
+                    <i class="fa-solid fa-percentage" style="font-size: 2.5rem; color: var(--dusty-pink); margin-bottom: 15px;"></i>
+                    <h4>The Rainy Solstice Midweek Discount</h4>
+                    <p>Enjoy a beautiful 15% flat deduction across all premium whole bean bag selections every Tuesday and Wednesday afternoon hours.</p>
+                    <span class="product-price" style="display:block; margin-top:15px; font-size:1.1rem; color:var(--sage);">Use Code: MIDWEEK15</span>
+                </div>
+            </div>
+            <div class="glass-card product-card" style="border: 1px dashed var(--dusty-pink);">
+                <div class="product-info" style="padding: 30px; text-align: center;">
+                    <i class="fa-solid fa-gift" style="font-size: 2.5rem; color: var(--dusty-pink); margin-bottom: 15px;"></i>
+                    <h4>Complimentary Pastry Integration Offer</h4>
+                    <p>Purchase any high-end custom floral box arrangement valued above Rs. 5,000 and receive a complimentary premium croissant and hot latte set.</p>
+                    <span class="product-price" style="display:block; margin-top:15px; font-size:1.1rem; color:var(--sage);">Automatic At Checkout Counter</span>
+                </div>
+            </div>
+            <div class="glass-card product-card" style="border: 1px dashed var(--dusty-pink);">
+                <div class="product-info" style="padding: 30px; text-align: center;">
+                    <i class="fa-solid fa-truck-ramping" style="font-size: 2.5rem; color: var(--dusty-pink); margin-bottom: 15px;"></i>
+                    <h4>Elite Bespoke Corporate Free Delivery</h4>
+                    <p>Unlock completely free white-glove logistics support inside city lines for all custom scheduled recurring weekly workspace flower subscriptions.</p>
+                    <span class="product-price" style="display:block; margin-top:15px; font-size:1.1rem; color:var(--sage);">Contact Account Desk</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Data Counters Section Grid Layout -->
+    <section class="counters-section">
+        <div class="counters-grid">
             <div class="counter-box">
-                <h2 class="counter" data-target="150">0</h2>
-                <p>Daily Floral Orders</p>
+                <h2 class="counter" data-target="15000">0</h2>
+                <p>Cups Extracted</p>
+            </div>
+            <div class="counter-box">
+                <h2 class="counter" data-target="8200">0</h2>
+                <p>Bouquets Hand-Tied</p>
             </div>
             <div class="counter-box">
                 <h2 class="counter" data-target="450">0</h2>
-                <p>Cups of Coffee Brewed</p>
+                <p>Luxury Events Staged</p>
             </div>
             <div class="counter-box">
                 <h2 class="counter" data-target="99">0</h2>
-                <p>Percent Customer Delight</p>
-            </div>
-            <div class="counter-box">
-                <h2 class="counter" data-target="12">0</h2>
-                <p>Exclusive House Blends</p>
+                <p>% Happy Guests</p>
             </div>
         </div>
     </section>
 
-    <!-- Premium Coffee Menu Section -->
-    <section id="menu">
-        <div class="section-header" data-aos="fade-up">
-            <span>Sip with Sophistication</span>
-            <h2>Our Premium Coffee Menu</h2>
-        </div>
-        
-        <div class="menu-tabs" data-aos="fade-up">
-            <button class="tab-btn active" onclick="switchMenu('espresso')">Espresso Bar</button>
-            <button class="tab-btn" onclick="switchMenu('specialty')">Specialty Concoctions</button>
-        </div>
-
-        <div id="espresso" class="menu-container active">
-            <div class="menu-item" data-aos="fade-up">
-                <div class="menu-details">
-                    <h3>Classic Affogato</h3>
-                    <p>Double shot of estate espresso poured over velvety Tahitian vanilla bean gelato.</p>
-                </div>
-                <div class="menu-price">Rs. 380</div>
-            </div>
-            <div class="menu-item" data-aos="fade-up">
-                <div class="menu-details">
-                    <h3>Spanish Flat White</h3>
-                    <p>Velvety micro-foam integrated with rich premium ristretto injections and condensed sweetness.</p>
-                </div>
-                <div class="menu-price">Rs. 320</div>
-            </div>
-            <div class="menu-item" data-aos="fade-up">
-                <div class="menu-details">
-                    <h3>Rose-Infused Latte</h3>
-                    <p>Steamed choice milk subtly sweetened with cold-pressed organic rose petal distillate.</p>
-                </div>
-                <div class="menu-price">Rs. 350</div>
-            </div>
-            <div class="menu-item" data-aos="fade-up">
-                <div class="menu-details">
-                    <h3>Cold-Brew Tonic</h3>
-                    <p>Slowly steeped 18-hour cold brew layered over crisp artisanal tonic water and citrus peel.</p>
-                </div>
-                <div class="menu-price">Rs. 340</div>
-            </div>
-        </div>
-
-        <div id="specialty" class="menu-container">
-            <div class="menu-item">
-                <div class="menu-details">
-                    <h3>Lavender Honey Shakerato</h3>
-                    <p>Espresso chilled instantly with wild mountain honey extract and subtle provence lavender flakes.</p>
-                </div>
-                <div class="menu-price">Rs. 410</div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-details">
-                    <h3>Smoked Oak Charcoal Macchiato</h3>
-                    <p>Distinctive activated charcoal extraction combined with smooth oat formulation and maple drizzle.</p>
-                </div>
-                <div class="menu-price">Rs. 450</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Premium Florals Collection -->
-    <section id="florals" style="background: rgba(232, 197, 200, 0.08);">
-        <div class="section-header" data-aos="fade-up">
-            <span>Elegant Botanical Curations</span>
-            <h2>The Florals Collection</h2>
-        </div>
-        <div class="product-grid">
-            <div class="product-card glass-card" data-aos="fade-up">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=600" alt="Blush Opulence Floral Arrangement">
-                </div>
-                <div class="product-info">
-                    <span>Bouquet</span>
-                    <h3>Blush Opulence Arrangement</h3>
-                    <div class="price">Rs. 4,500</div>
-                    <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.75rem;">Order Delivery</button>
-                </div>
-            </div>
-            <div class="product-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=600" alt="Serene Sage Eucalyptus Mix">
-                </div>
-                <div class="product-info">
-                    <span>Vase Ensemble</span>
-                    <h3>Serene Sage & Eucalyptus Mix</h3>
-                    <div class="price">Rs. 3,800</div>
-                    <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.75rem;">Order Delivery</button>
-                </div>
-            </div>
-            <div class="product-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&q=80&w=600" alt="Crimson Velvet Premium Roses">
-                </div>
-                <div class="product-info">
-                    <span>Premium Box</span>
-                    <h3>Crimson Velvet Roses Box</h3>
-                    <div class="price">Rs. 6,200</div>
-                    <button class="btn btn-outline" style="padding: 8px 20px; font-size: 0.75rem;">Order Delivery</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gift Hampers & Seasonal Offers -->
-    <section id="hampers">
-        <div class="section-header" data-aos="fade-up">
-            <span>Curated Perfection for Loved Ones</span>
-            <h2>Gift Hampers & Seasonal Offers</h2>
-        </div>
-        <div class="about-grid">
-            <div class="about-text" data-aos="fade-right">
-                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--sage-green); font-size: 1.2rem;">Limited Edition Collaborations</span>
-                <h3 style="margin-top: 5px;">The Midsummer Bloom & Brew Trunk</h3>
-                <p>Presenting our ultimate luxury gifting bundle. This premium gift hamper elegantly aligns a hand-selected dynamic single-origin bag of specialty Ethiopian coffee beans with a breathtaking ceramic desktop vase featuring vibrant preserved pastel carnations and ranunculus.</p>
-                <div style="margin-bottom: 25px;">
-                    <p style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--sage-green); margin-right: 10px;"></i> 250g Exclusive Arabica Micro-lot Selection</p>
-                    <p style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--sage-green); margin-right: 10px;"></i> Masterfully curated preserved evergreen flowers</p>
-                    <p style="margin-bottom: 8px;"><i class="fa-solid fa-check" style="color: var(--sage-green); margin-right: 10px;"></i> Custom brass stirring spoon & premium gift card</p>
-                </div>
-                <div style="display: flex; align-items: center; gap: 25px;">
-                    <span class="serif" style="font-size: 2.2rem; color: var(--sage-green); font-weight: 600;">Rs. 7,500</span>
-                    <a href="#contact" class="btn btn-primary">Secure a Box</a>
-                </div>
-            </div>
-            <div class="about-img-box" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800" alt="Luxury gift box container close up">
-            </div>
-        </div>
-    </section>
-
-    <!-- Visual Portfolio Gallery Section -->
-    <section id="gallery" style="background: rgba(138, 154, 134, 0.04);">
-        <div class="section-header" data-aos="fade-up">
-            <span>Moments Frozen in Splendor</span>
-            <h2>Our Architectural & Product Gallery</h2>
+    <!-- Premium Aesthetic Interior & Product Visual Gallery -->
+    <section id="gallery">
+        <div class="section-header">
+            <h2>Aesthetic Visual Gallery</h2>
+            <p>A photographic curation of beautiful moments, spatial architecture design accents, and premium culinary details inside our shop.</p>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item" data-aos="zoom-in"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600" alt="Pouring latte art at coffee counter"><div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div></div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1525257831705-5c6e9a63a23a?auto=format&fit=crop&q=80&w=600" alt="Beautiful fresh flower arrangements aligned"><div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div></div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600" alt="Minimalist chic design cafe counter area layout"><div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div></div>
-            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600" alt="Delicate wedding floral setup aesthetics"><div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=400" alt="Gallery Cafe Image">
+                <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=400" alt="Gallery Floral Image">
+                <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=400" alt="Gallery Dessert Image">
+                <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&q=80&w=400" alt="Gallery Hamper Image">
+                <div class="gallery-overlay"><i class="fa-brands fa-instagram"></i></div>
+            </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonial-section">
-        <div class="section-header" data-aos="fade-up">
-            <span>Words of Appreciation</span>
-            <h2>Voices of Our Patrons</h2>
+    <!-- Animated Customer Testimonials Section Framework Grid -->
+    <section id="testimonials" style="background: var(--white);">
+        <div class="section-header">
+            <h2>Voices of Elegance</h2>
+            <p>Read true feedback and elegant lifestyle reviews shared by our most sophisticated verified patrons.</p>
         </div>
         <div class="testimonial-grid">
-            <div class="testi-card glass-card" data-aos="fade-up">
-                <p>"KR Café is an absolute masterpiece of sensory delight. The Spanish Flat White is incredibly smooth, and the smell of fresh lilies while drinking coffee is unmatched."</p>
-                <div class="testi-profile">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" alt="Portrait of Alisha Shrestha">
-                    <h4>Alisha Shrestha</h4>
-                    <span>Lifestyle Journalist</span>
+            <div class="glass-card testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"KR Café & Florals completely redefines morning experiences. The signature Rose Latte features an incredibly clean espresso extraction, and the interior environment feels like a high-end European sanctuary space."</p>
+                <div class="client-profile">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" alt="Client 1 Profile">
+                    <div class="client-info">
+                        <h4>Aarya Shrestha</h4>
+                        <span>Interior Architect Patrons</span>
+                    </div>
                 </div>
             </div>
-            <div class="testi-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                <p>"They designed our intimate corporate banquet space completely with white hydrangeas and custom specialty cold brew taps. Absolute professionals with premium tastes."</p>
-                <div class="testi-profile">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Portrait of Rohan Adhikari">
-                    <h4>Rohan Adhikari</h4>
-                    <span>Creative Director</span>
+            <div class="glass-card testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"The custom velvet floral cylinder boxes prepared for our corporate anniversary event were jaw-droppingly beautiful. Their meticulous attention to detail and color pairing logic is unmatched inside the country."</p>
+                <div class="client-profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Client 2 Profile">
+                    <div class="client-info">
+                        <h4>Rohan Gurung</h4>
+                        <span>Creative Director Agency</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"An absolute masterpiece concept. The pairing of real botanical floral art pieces with top-tier specialty micro-roasted coffees turns a simple cafe stop into an exquisite personal luxury ritual."</p>
+                <div class="client-profile">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" alt="Client 3 Profile">
+                    <div class="client-info">
+                        <h4>Sneha Sharma</h4>
+                        <span>Luxury Lifestyle Writer</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Meet Our Team -->
-    <section id="team">
-        <div class="section-header" data-aos="fade-up">
-            <span>The Craftsmen Behind the Magic</span>
-            <h2>Our Artisans & Curators</h2>
-        </div>
-        <div class="team-grid">
-            <div class="team-card" data-aos="fade-up">
-                <div class="team-img">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Portrait of Elena Karki, Master Florist">
-                    <div class="team-socials">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <h3>Elena Karki</h3>
-                <p style="color: var(--sage-green); font-size: 0.85rem; font-weight: 500; text-transform: uppercase;">Lead Floral Designer</p>
-            </div>
-            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="team-img">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400" alt="Portrait of Niranjan Ray, Champion Barista">
-                    <div class="team-socials">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <h3>Niranjan Ray</h3>
-                <p style="color: var(--sage-green); font-size: 0.85rem; font-weight: 500; text-transform: uppercase;">Champion Roaster & Barista</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog & Lifestyle Section -->
-    <section id="blog" style="background: rgba(74, 59, 50, 0.02);">
-        <div class="section-header" data-aos="fade-up">
-            <span>Stories, Tips & Coffee Culture</span>
-            <h2>The KR Lifestyle Journal</h2>
+    <!-- Editorial Blog & Culinary Journal Integration -->
+    <section id="blog">
+        <div class="section-header">
+            <h2>The Culinary & Botanical Journal</h2>
+            <p>Deep educational dives regarding artisanal brewing techniques, organic floral design, and seasonal aesthetic trends.</p>
         </div>
         <div class="blog-grid">
-            <div class="blog-card" data-aos="fade-up">
-                <div class="blog-img">
-                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600" alt="Coffee beans overview grid">
+            <div class="glass-card blog-card">
+                <img class="blog-img" src="https://images.unsplash.com/photo-1510972527409-cca19de31749?auto=format&fit=crop&q=80&w=500" alt="Blog Post 1">
+                <div class="blog-content">
+                    <div class="blog-meta">June 14, 2026 • Coffee Culture</div>
+                    <h3>Demystifying Single-Origin Micro-Roast Pour Overs</h3>
+                    <p>Unpack the exact architectural chemistry dynamics balancing temperature controls, grind geometry distributions, and extraction timelines...</p>
+                    <a href="#" class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="blog-meta">June 14, 2026 • Coffee Culture</div>
-                <h3>Understanding Single Origin Varieties</h3>
-                <p>Delve systematically deep into the microclimates of Yirgacheffe and Geisha beans to grasp why acidity transforms standard mornings.</p>
-                <a href="#blog" class="read-more">Read Insight <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="blog-img">
-                    <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&q=80&w=600" alt="Preserving fresh seasonal botanical stems properly">
+            <div class="glass-card blog-card">
+                <img class="blog-img" src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&q=80&w=500" alt="Blog Post 2">
+                <div class="blog-content">
+                    <div class="blog-meta">July 02, 2026 • Floral Artistry</div>
+                    <h3>Pro-Tips To Preserve Luxury Seasonal Tulip Stems</h3>
+                    <p>Discover the precise water temperature configurations and structural stem trimming angles utilized by master decorators to expand floral lifespans...</p>
+                    <a href="#" class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <div class="blog-meta">July 02, 2026 • Floral Care</div>
-                <h3>Extending the Lifetime of Stems</h3>
-                <p>Simple daily routines, custom water temperatures, and structural clipping systems that keep floral bouquets vibrant twice as long.</p>
-                <a href="#blog" class="read-more">Read Insight <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="glass-card blog-card">
+                <img class="blog-img" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=500" alt="Blog Post 3">
+                <div class="blog-content">
+                    <div class="blog-meta">July 12, 2026 • Curated Spaces</div>
+                    <h3>The Psychological Symphony of Café Ambiance Elements</h3>
+                    <p>An academic look highlighting how custom lighting layouts, glass textures, and structural greenery merge together to elevate cognitive clarity...</p>
+                    <a href="#" class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive FAQ Section -->
-    <section class="faq-section">
-        <div class="section-header" data-aos="fade-up">
-            <span>Answering Your Inquiries</span>
+    <!-- FAQ Accordion Framework Segment Section -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
             <h2>Frequently Asked Questions</h2>
+            <p>Clear responses addressing structural guest operations, custom pre-ordering options, and regional corporate logistics.</p>
         </div>
         <div class="faq-container">
-            <div class="faq-item" data-aos="fade-up">
-                <div class="faq-question">
-                    <h3>Do you customize bouquets for large corporate events?</h3>
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, absolutely. We offer completely bespoke botanical spatial planning services and custom arrangements tailored perfectly to match your company branding and theme guidelines.</p>
+            <div class="glass-card faq-item">
+                <button class="faq-trigger">What specific micro-lot origins are currently featured in your espresso hoppers? <i class="fa-solid fa-chevron-down faq-icon"></i></button>
+                <div class="faq-content">
+                    <p>We source organically produced, single-origin Arabica beans rotating seasonally from high-altitude estates in Yirgacheffe (Ethiopia) and Antigua (Guatemala). Every option is micro-roasted weekly to perfection.</p>
                 </div>
             </div>
-            <div class="faq-item" data-aos="fade-up">
-                <div class="faq-question">
-                    <h3>Where do you source your premium arabica beans?</h3>
-                    <i class="fa-solid fa-chevron-down"></i>
+            <div class="glass-card faq-item">
+                <button class="faq-trigger">Can I order completely customized floral arrangements online for local events? <i class="fa-solid fa-chevron-down faq-icon"></i></button>
+                <div class="faq-content">
+                    <p>Absolutely. You can leverage our dedicated online contact form structure or connect directly via phone consultation to secure tailored structural centerpieces or bespoke bridal bouquet configurations.</p>
                 </div>
-                <div class="faq-answer">
-                    <p>We source ethically and directly from multi-generational agricultural lots primarily based across Ethiopia, Colombia, and selected high-altitude regions inside Nepal.</p>
+            </div>
+            <div class="glass-card faq-item">
+                <button class="faq-trigger">Do you execute home delivery actions for coffee, pastries, and floral packages? <i class="fa-solid fa-chevron-down faq-icon"></i></button>
+                <div class="faq-content">
+                    <p>Yes. We offer white-glove climate-controlled delivery services for all our bouquets, gift hampers, and custom package structures across the local metropolitan region boundaries to ensure perfect preservation.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Subscription Section -->
-    <section class="newsletter-section" data-aos="fade-up">
-        <h2>Join The Society</h2>
-        <p>Subscribe to receive early announcements of exclusive seasonal flower drops and member-only secret coffee blends.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to our premium updates!');">
-            <input type="email" placeholder="Provide your premium email address" required>
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-        </form>
+    <!-- Social Media Hub Instagram Preview Strip Section -->
+    <section id="instagram" style="padding: 60px 0;">
+        <div class="section-header" style="padding: 0 8%;">
+            <h2>Follow Our Aesthetic Journey</h2>
+            <p>Join our premium social circles on Instagram for daily visual stories regarding fresh bakes and incoming flower imports.</p>
+        </div>
+        <div class="instagram-grid">
+            <div class="insta-item"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=300" alt="Insta 1"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="insta-item"><img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&q=80&w=300" alt="Insta 2"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="insta-item"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=300" alt="Insta 3"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="insta-item"><img src="https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&q=80&w=300" alt="Insta 4"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="insta-item"><img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&q=80&w=300" alt="Insta 5"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+            <div class="insta-item"><img src="https://images.unsplash.com/photo-1510972527409-cca19de31749?auto=format&fit=crop&q=80&w=300" alt="Insta 6"><div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div></div>
+        </div>
     </section>
 
-    <!-- Comprehensive Contact Form & Info Panel Section -->
+    <!-- Newsletter Subscription Layout Section Frame -->
+    <section class="newsletter-section">
+        <div class="newsletter-box">
+            <h2>Subscribe to the KR Lifestyle Circle</h2>
+            <p>Receive priority notifications regarding micro-lot bean batch arrivals, seasonal floral workshops, and exclusive private tasting invitations.</p>
+            <form class="newsletter-form" onsubmit="handleFormSubmit(event)">
+                <input type="email" class="form-control" placeholder="Enter your premium email address..." required>
+                <button type="submit" class="btn btn-primary">Join Club</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Integrated Contact Form & Geographic Location Center -->
     <section id="contact">
-        <div class="section-header" data-aos="fade-up">
-            <span>Get in Touch With Us</span>
-            <h2>Connect & Reserve</h2>
+        <div class="section-header">
+            <h2>Connect With Us</h2>
+            <p>Visit our architectural flagship storefront or drop a customized message below for instant administrative review.</p>
         </div>
         <div class="contact-grid">
-            <div class="contact-info-panel" data-aos="fade-right">
-                <h3>Visit The Sanctuary</h3>
-                <div class="contact-details">
-                    <div class="contact-detail-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Premium Boutique Block, Milan Chowk, Butwal, Nepal</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <div>
-                            <h4>Inquiries & Deliveries</h4>
-                            <p>+977-9847162510</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <div>
-                            <h4>Digital Correspondence</h4>
-                            <p>concierge@krcafeflorals.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail-item">
-                        <i class="fa-solid fa-clock"></i>
-                        <div>
-                            <h4>Operational Hours</h4>
-                            <p>Monday – Saturday: 07:00 AM – 09:00 PM<br>Sunday: 08:00 AM – 06:00 PM</p>
-                        </div>
+            <div class="contact-details-box">
+                <div class="glass-card info-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Flagship Store Location</h4>
+                        <p>Main Boulevard, Ward No. 9,<br>Butwal, Lumbini Province, Nepal</p>
                     </div>
                 </div>
-
-                <!-- Google Maps Placeholder styled as responsive glass container -->
-                <div class="map-placeholder">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.9669527376755!2d83.4642436!3d27.7028711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996868cc0c8b9a1%3A0xc3952d9c4909a341!2sMilan%20Chowk%2C%20Butwal!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="glass-card info-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <h4>Direct Telephone Link</h4>
+                        <p><a href="tel:+9779847162510">+977-9847162510</a></p>
+                    </div>
+                </div>
+                <div class="glass-card info-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>Fictional Concierge Mail</h4>
+                        <p><a href="mailto:concierge@krcafeflorals.com">concierge@krcafeflorals.com</a></p>
+                    </div>
+                </div>
+                <div class="glass-card info-card">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h4>Store Operational Hours</h4>
+                        <p>Monday - Saturday: 07:00 AM - 09:00 PM<br>Sunday & Holidays: 08:00 AM - 08:00 PM</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="contact-form-panel glass-card" data-aos="fade-left">
-                <h3 style="margin-bottom: 25px;">Send a Direct Note</h3>
-                <form onsubmit="event.preventDefault(); alert('Your message has been elegantly conveyed to our customer experience desk.');">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Full Name" required>
+            <div class="glass-card contact-form-container">
+                <form onsubmit="handleFormSubmit(event)">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label>Full Guest Name</label>
+                            <input type="text" class="form-control" placeholder="E.g., Aarya Shrestha" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" placeholder="E.g., name@domain.com" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Corporate/Personal Email" required>
+                        <label>Engagement Context Type</label>
+                        <select class="form-control" style="background-color: var(--cream);">
+                            <option>General Table Booking Query</option>
+                            <option>Custom Custom Flower Design Bouquet</option>
+                            <option>Corporate Workspace Gifting Hamper Contract</option>
+                            <option>Private Event Ambiance Staging Setup</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Subject of Enquiry">
+                        <label>Detailed Message Context</label>
+                        <textarea class="form-control" rows="5" placeholder="Elaborate your premium custom requirements elegantly here..." required></textarea>
                     </div>
-                    <div class="form-group">
-                        <textarea rows="5" placeholder="Compose your complete thoughts here..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Dispatch Message</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Dispatch Requirements</button>
                 </form>
             </div>
         </div>
+
+        <div class="map-wrapper">
+            <div class="map-placeholder">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <h4 class="brand-font" style="font-size: 1.5rem; margin-bottom: 5px;">Interactive Google Maps View Placeholder</h4>
+                <p style="font-size: 0.85rem; max-width: 500px; color: var(--text-muted);">Main Boulevard Store Hub, Butwal, Nepal. Production deployments easily replace this safe asset area frame wrapper container block with standard generated iframe markup vectors.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Structural Elegant Master Footer Casing Link Platform -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-logo">
-                <h2>KR Café & Florals</h2>
-                <p>An exquisite intersection of artisanal organic coffee cultivation and sophisticated master botanical arrangements tailored perfectly for architectural spaces and refined souls.</p>
-                <div class="footer-socials">
-                    <a href="#" aria-label="Facebook Link"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram Link"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Pinterest Link"><i class="fa-brands fa-pinterest-p"></i></a>
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="brand">KR Café & Florals</span>
+                    <span class="tagline" style="color: var(--rose);">Where Coffee Meets Blooms</span>
+                </a>
+                <p>An exquisite, premium lifestyle hospitality sanctuary framework creating elegant symmetry between the absolute finest specialty estate coffees and majestic botanical designer arrangements.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" aria-label="Follow us on Facebook profile pages"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Follow our visual feeds on Instagram galleries"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/9779847162510" target="_blank" aria-label="Connect directly using official WhatsApp chat channels"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h3>Navigation</h3>
+                <h3>Our Curations</h3>
                 <ul>
-                    <li><a href="#">Home Base</a></li>
-                    <li><a href="#about">Our Story</a></li>
-                    <li><a href="#menu">Espresso Bar Menu</a></li>
-                    <li><a href="#florals">Floral Inventory</a></li>
+                    <li><a href="#menu">Specialty Espresso Drinks</a></li>
+                    <li><a href="#menu">Premium Patisserie Dessert Cake</a></li>
+                    <li><a href="#florals">Imported Custom Flower Arrangements</a></li>
+                    <li><a href="#curations">Luxury Holiday Gift Hampers Box</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Bespoke Work</h3>
+                <h3>Quick Navigation</h3>
                 <ul>
-                    <li><a href="#hampers">Luxury Gift Hampers</a></li>
-                    <li><a href="#contact">Corporate Spatial Setups</a></li>
-                    <li><a href="#contact">Private Banquets</a></li>
-                    <li><a href="#blog">Lifestyle Journal</a></li>
+                    <li><a href="#about">Our Story & Mission Details</a></li>
+                    <li><a href="#menu">Dynamic Digital Menu Cards</a></li>
+                    <li><a href="#blog">Botanical Journal Editorial Articles</a></li>
+                    <li><a href="#faq">Guest Frequently Asked Questions</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Concierge Desk</h3>
-                <p style="font-size: 0.85rem; color: #A0A0A0; line-height: 1.6;">Have specific requests or need immediate delivery tracking support? Call our hotline directly at +977-9847162510.</p>
+                <h3>Flagship Address</h3>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #C0B7B1;">
+                    Main Boulevard, Ward No. 9,<br>
+                    Butwal, Lumbini Province, Nepal<br><br>
+                    <strong>Phone Link:</strong> +977-9847162510<br>
+                    <strong>Email Box:</strong> info@krcafeflorals.com
+                </p>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 KR Café & Florals. All Rights Handcrafted & Reserved. Designed with absolute aesthetic excellence.</p>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KR Café & Florals. Crafted with absolute devotion. All Rights Reserved.</p>
+            <p style="font-size: 0.75rem; color: #6F523B;">Designed for Boutique Retail Standards.</p>
         </div>
     </footer>
 
-    <!-- Back to top button -->
-    <div class="back-to-top" id="backToTop" aria-label="Scroll back to top of page">
-        <i class="fa-solid fa-arrow-up"></i>
-    </div>
+    <!-- Back to Top Floating Button Structural Component Toggle Link -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Instantly return back upward to top of page document layout context frame"><i class="fa-solid fa-arrow-up"></i></a>
 
-    <!-- Scripting for interactions and UI flow state -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Application Script Execution Layer Core Logic Framework -->
     <script>
-        // Init Scroll Animations
-        AOS.init({
-            duration: 1000,
-            once: true,
-            easing: 'ease-out-cubic'
-        });
-
-        // Preloader Logic
+        // Loading State Initialization Controls Handler
         window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => preloader.style.display = 'none', 500);
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.visibility = 'hidden'; }, 500);
             initCounters();
         });
 
-        // Sticky Navbar Effect
+        // Sticky Navigation Bar & Top Button Scroll Monitoring Logic
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navbar');
-            const btt = document.getElementById('backToTop');
             if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
+                navbar.classList.add('sticky');
             } else {
-                nav.classList.remove('scrolled');
+                navbar.classList.remove('sticky');
             }
             if (window.scrollY > 500) {
-                btt.classList.add('show');
+                backToTop.classList.add('show');
             } else {
-                btt.classList.remove('show');
+                backToTop.classList.remove('show');
             }
         });
 
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
+        // Responsive Mobile Hamburger Sliding Menu Trigger Logic
+        const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
+        menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-xmark');
+            menuBtn.firstElementChild.classList.toggle('fa-bars');
+            menuBtn.firstElementChild.classList.toggle('fa-xmark');
         });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+        function toggleMenu() {
+            if(window.innerWidth <= 992) {
                 navLinks.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fa-solid fa-bars';
-            });
-        });
+                menuBtn.firstElementChild.classList.add('fa-bars');
+                menuBtn.firstElementChild.classList.remove('fa-xmark');
+            }
+        }
 
-        // Dark/Light Mode Switcher Logic
+        // Luxury UI Mode Switching Context Handler
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', targetTheme);
-            themeToggle.querySelector('i').className = targetTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            themeToggle.innerHTML = targetTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
         });
 
-        // Floating Petal Animation Engine
-        function createPetal() {
-            const container = document.getElementById('petalContainer');
-            if(!container) return;
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.width = Math.random() * 15 + 10 + 'px';
-            petal.style.height = petal.style.width;
-            petal.style.animationDuration = Math.random() * 10 + 10 + 's';
-            container.appendChild(petal);
-            setTimeout(() => petal.remove(), 15000);
-        }
-        setInterval(createPetal, 1500);
+        // Dynamic Menu Categories Grid Filter Controls Logic Architecture
+        function filterMenu(category) {
+            const cards = document.querySelectorAll('#menuGrid .product-card');
+            const buttons = document.querySelectorAll('#menu .filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
-        // Menu Tab Switcher
-        function switchMenu(menuId) {
-            document.querySelectorAll('.menu-container').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(menuId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    if (category === 'all' || card.getAttribute('data-cat') === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }, 300);
+            });
         }
 
-        // Animated Counters Engine
+        // Dynamic Florals Categories Grid Filter Controls Logic Architecture
+        function filterFlorals(category) {
+            const cards = document.querySelectorAll('#floralsGrid .product-card');
+            const buttons = document.querySelectorAll('#florals .filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    if (category === 'all' || card.getAttribute('data-cat') === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }, 300);
+            });
+        }
+
+        // FAQ Collapse Accordion Component Interaction Core Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const trigger = item.querySelector('.faq-trigger');
+            trigger.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) { item.classList.add('active'); }
+            });
+        });
+
+        // Animated Numerical Incremental Counter Data Analytics Drivers
         function initCounters() {
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const speed = 200;
+                const speed = target / 100;
                 const updateCount = () => {
                     const count = +counter.innerText;
-                    const inc = target / speed;
                     if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 15);
+                        counter.innerText = Math.ceil(count + speed);
+                        setTimeout(updateCount, 20);
                     } else {
-                        counter.innerText = target;
+                        counter.innerText = target.toLocaleString() + (counter.getAttribute('data-target') === '99' ? '' : '+');
                     }
                 };
                 updateCount();
             });
         }
 
-        // Interactive FAQs Accordion
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                item.classList.toggle('active');
-            });
-        });
+        // Floating Botanical Petal Animation Engine Canvas Context Execution
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        let petalsArray = [];
 
-        // Back to top click behavior
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 6;
+                this.speedX = Math.random() * 1.5 - 0.5;
+                this.speedY = Math.random() * 1 + 0.8;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 1 - 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size / 1.8, 0, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(232, 197, 200, ${this.opacity})`; // Soft dusty pink tone representation colors mix
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function initPetals() {
+            petalsArray = [];
+            const count = window.innerWidth < 768 ? 20 : 50;
+            for (let i = 0; i < count; i++) { petalsArray.push(new Petal()); }
+        }
+        initPetals();
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petalsArray.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+            requestAnimationFrame(animatePetals);
+        }
+        animatePetals();
+
+        // Elegant Standard Feedback Success Message Validation Alerts Interceptor
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert("Thank you for choosing KR Café & Florals. Your requirement data has been successfully securely registered with our luxury concierge desk. We will reach back to you shortly.");
+            event.target.reset();
+        }
     </script>
 </body>
 </html>
